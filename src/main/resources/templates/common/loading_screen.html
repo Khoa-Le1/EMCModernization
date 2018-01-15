@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div th:fragment="common-loading-screen" id="loading-screen" class="modal">
+    <div class="modal-content valign-wrapper" style="height: 100%;
+             <!--/*background:#ebeff4;*/-->
+                <!--background: transparent">
+        <!--<h4 style="color:steelblue;">LOADING</h4>-->
+        <!--<img src="images/loading.gif" height="200">-->
+        <div class="preloader-wrapper big active">
+            <div class="spinner-layer spinner-yellow-only">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div><div class="gap-patch">
+                <div class="circle"></div>
+            </div><div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
