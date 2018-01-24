@@ -42,7 +42,7 @@
             <img src="images/ehealth-logo.png">
         </div>
         <h5 class="brand-logo center" id="page-title">
-            REMEDIATION QUEUE
+            Remediation Queue
         </h5>
         <ul id="nav-mobile" class="right">
             <li>
@@ -128,7 +128,7 @@
         </button>
     </div>
     <div class="col s6 center content">
-        <h5>EMC SCI ADMIN</h5>
+        <h5>MESSAGE INQUIRY</h5>
     </div>
 </div>
 
@@ -151,7 +151,12 @@
             </div>
             <div class="col s4 input-field">
                 <select name="domain">
-                    <option value="LAB">LAB</option>
+
+                    <option value="CDM">Chronic Disease Management</option>
+                    <option value="CD">Clinical Documents</option>
+                    <option value="CE">Clinical Encounters</option>
+                    <option value="LAB" selected>LAB</option>
+                    <option value="MI">Medical Imaging</option>
                 </select>
                 <label>Domain</label>
             </div>
@@ -165,32 +170,21 @@
                             <i class="material-icons">description</i>
                         </span>
                 <br>
-                <h5 class="title">EID Lab Remediation Search</h5>
+                <h5 class="title">Lab Message Inquiry</h5>
                 <hr>
             </div>
-
-            <div class="col s4 input-field">
+            <div class="col s7 input-field">
                 <label>Message Control ID</label>
                 <input type="text" name="message-control-id" url-updater>
-            </div> <br>
+            </div>
 
-            <div class="col s4 input-field">
+
+
+            <div class="col s7 input-field">
                 <label>Order Number</label>
                 <input type="text" name="order-number" url-updater>
             </div>
 
-            <div class="col s4 input-field">
-                <select name="status" multiple url-updater>
-                    <option value="" disabled selected>Status</option>
-                    <option value="NEW">New</option>
-                    <option value="ASS">Assigned</option>
-                    <option value="MRR">Message Resend Requested</option>
-                    <option value="RER">Remediation Resend</option>
-                    <option value="CLO">Closed</option>
-                    <option value="AUCLO">Auto-Closed</option>
-                    <option value="RES">Resolved</option>
-                </select>
-            </div>
 
             <div class="col s12 center adv-search">
                 <b>Advanced Search</b>
@@ -201,55 +195,13 @@
             </div>
 
             <div class="col s6 input-field adv-search-field">
-                <select name="error-type" multiple url-updater>
-                    <option value="" disabled selected>Error Type</option>
-                    <option value="data-exceeds-maximum-length">Data Exceeds <br>Maximum Length</option>
-                    <option value="historical-type">Historical Type</option>
-                    <option value="invalid-datatype">Invalid Datatype</option>
-                    <option value="location-not-active">Location Not Active</option>
-                    <option value="location-not-found">Location Not Found</option>
-                </select>
-            </div>
-
-            <div class="col s3 input-field adv-search-field">
                 <label>From Date</label>
                 <input type="text" class="datepicker" name="from-date" url-updater>
             </div>
-            <div class="col s3 input-field adv-search-field">
+            <div class="col s6 input-field adv-search-field">
                 <label>To Date</label>
                 <input type="text" class="datepicker" name="to-date" url-updater>
             </div>
-
-            <div class="col s6 input-field adv-search-field">
-                <select name="source" multiple url-updater>
-                    <option value="" disabled selected>Source</option>
-                    <option value="CHR">CHR</option>
-                    <option value="FHHR">FHHR</option>
-                    <option value="HRCA">HRCA</option>
-                    <option value="ICL">ICL</option>
-                    <option value="KRHA">KRHA</option>
-                    <option value="KTHR">KTHR</option>
-                    <option value="MCRHR">MCRHR</option>
-                    <option value="PAPHR">PAPHR</option>
-                    <option value="PNHR">PNHR</option>
-                    <option value="RQHR">RQHR</option>
-                    <option value="SCA">SCA</option>
-                    <option value="SDCL">SCDL</option>
-                    <option value="SHR">SHR</option>
-                    <option value="SktnHR">SktnHR</option>
-                </select>
-            </div>
-
-            <div class="col s6 input-field adv-search-field">
-                <select name="resolution-type" multiple url-updater>
-                    <option value="" disabled selected>Resolution Type</option>
-                    <option value="verified">Verified</option>
-                    <option value="outstanding">Outstanding</option>
-                    <option value="no-issue">No Issue</option>
-                </select>
-            <br>
-            </div>
-
             <!--SEARCH AND CLEAR BUTTONS-->
             <div class="col s3"></div>
             <div class="col s3 center form-row-action">
@@ -263,14 +215,14 @@
                     <i class="material-icons left">autorenew</i>Clear
                 </button>
             </div>
-
             <div class="col s3"></div>
+
         </div>
 
         <br><br>
     </form>
 
-    <div class="row form-row z-depth-2 hiddendiv" id="ser-res" style="border-bottom: none;margin-bottom: 0px">
+    <div class="row form-row z-depth-2 " id="ser-res" style="border-bottom: none;margin-bottom: 0px">
         <div class="col s12 center">
                     <span class="btn btn-floating counter">
                         <i class="material-icons">search</i>
@@ -281,8 +233,18 @@
         </div>
     </div>
 
-    <div class="row form-row z-depth-1-half hiddendiv" style="padding: 0px; overflow-x: auto" id="res-tab">
+    <div class="row form-row z-depth-1-half " style="padding: 0px; overflow-x: auto" id="res-tab">
         <!--TABLE DYNAMICALLY LOADED HERE-->
+        <table>
+            <tr>
+                <th>Month</th>
+                <th>Savings</th>
+            </tr>
+            <tr>
+                <td>January</td>
+                <td>$100</td>
+            </tr>
+        </table>
     </div>
 
     <br>
@@ -546,4 +508,3 @@
 <script src="js/jquery.highlight.js"></script>
 <script src="js/search.js"></script>
 </body>
-</html>
