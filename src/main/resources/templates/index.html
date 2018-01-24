@@ -1,105 +1,130 @@
+<!--<!DOCTYPE HTML>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+    <!--<title th:text="${title}"></title>-->
+    <!--<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="page-content">-->
+    <!--<h1 th:text="|Hello ${name}!|"></h1>-->
+    <!--<h2 th:text="|Welcome to ${title} application|"></h2>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+
+
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="common/header :: common-header"></head>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/default}"
+      th:with="title=${title}, currentPage='home'"
+      lang="en">
+<!--th:with="title=${title}, currentPage='home'" lang="en">-->
+<head >
+    <title>EMC</title>
+    <!--<title >Title will be replaced&lt;!&ndash;layout:title-pattern="$CONTENT_TITLE"&ndash;&gt;</title>-->
+    <!--<object th:include="common/head :: head" th:remove="tag"></object>-->
+</head>
 <body>
-<!--LOADING SCREEN-->
-<div id="loading-screen" class="modal">
-    <div class="modal-content valign-wrapper" style="height: 100%;
-             <!--/*background:#ebeff4;*/-->
-                <!--background: transparent">
-        <!--<h4 style="color:steelblue;">LOADING</h4>-->
-        <!--<img src="images/loading.gif" height="200">-->
-        <div class="preloader-wrapper big active">
-            <div class="spinner-layer spinner-yellow-only">
-                <div class="circle-clipper left">
-                    <div class="circle"></div>
-                </div><div class="gap-patch">
-                <div class="circle"></div>
-            </div><div class="circle-clipper right">
-                <div class="circle"></div>
-            </div>
-            </div>
-        </div>
-    </div>
-</div>
+<!--&lt;!&ndash;LOADING SCREEN&ndash;&gt;-->
+<!--<div id="loading-screen" class="modal">-->
+    <!--<div class="modal-content valign-wrapper" style="height: 100%;">-->
+             <!--&lt;!&ndash;/*background:#ebeff4;*/&ndash;&gt;-->
+                <!--&lt;!&ndash;background: transparent">-->
+        <!--&lt;!&ndash;<h4 style="color:steelblue;">LOADING</h4>&ndash;&gt;-->
+        <!--&lt;!&ndash;<img src="images/loading.gif" height="200">&ndash;&gt;-->
+        <!--<div class="preloader-wrapper big active">-->
+            <!--<div class="spinner-layer spinner-yellow-only">-->
+                <!--<div class="circle-clipper left">-->
+                    <!--<div class="circle"></div>-->
+                <!--</div>-->
+                <!--<div class="gap-patch">-->
+                    <!--<div class="circle"></div>-->
+                <!--</div>-->
+                <!--<div class="circle-clipper right">-->
+                    <!--<div class="circle"></div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
 
 <!--NAVBAR-->
-<nav id="page-header">
-    <div class="nav-wrapper">
-        <a href="#" data-activates="side-nav-bar" class="button-collapse">
-            <i class="material-icons">menu</i>
-        </a>
-        <div class="brand-logo left hide-on-small-only">
-            <img src="images/ehealth-logo.png">
-        </div>
-        <h5 class="brand-logo center" id="page-title">
-            REMEDIATION QUEUE
-        </h5>
-        <ul id="nav-mobile" class="right">
-            <li>
-                <a href="#" class="dropdown-button" data-activates="user-actions">
-                    <i class="material-icons left">account_box</i>
-                    User Lastname
-                </a>
-            </li>
-        </ul>
-    </div>
-</nav>
+<!--<nav id="page-header" th:replace="common/navbar :: nav">-->
+    <!--<div class="nav-wrapper">-->
+        <!--<a href="#" data-activates="side-nav-bar" class="button-collapse">-->
+            <!--<i class="material-icons">menu</i>-->
+        <!--</a>-->
+        <!--<div class="brand-logo left hide-on-small-only">-->
+            <!--<img th:src="@{images/ehealth-logo.png}" src="../static/images/ehealth-logo.png">-->
+        <!--</div>-->
+        <!--<h5 class="brand-logo center" id="page-title">-->
+            <!--EMC-->
+        <!--</h5>-->
+        <!--<ul id="nav-mobile" class="right">-->
+            <!--<li>-->
+                <!--<a href="#" class="dropdown-button" data-activates="user-actions">-->
+                    <!--<i class="material-icons left">account_box</i>-->
+                    <!--User Lastname-->
+                <!--</a>-->
+            <!--</li>-->
+        <!--</ul>-->
+    <!--</div>-->
+<!--</nav>-->
 
 <!--USER ACTIONS DROPDOWN-->
-<ul id='user-actions' class='dropdown-content'>
-    <li class="center user-info">
-        <i class="material-icons">account_circle</i>
-        <br>
-        Logged in as
-        <br>
-        <span>username</span>
-        <br>
-    </li>
-    <li class="divider"></li>
-    <li class="action">
-        <button class="btn waves-effect waves-light">Logout</button>
-    </li>
-</ul>
+<!--<ul id='user-actions' class='dropdown-content'>-->
+    <!--<li class="center user-info">-->
+        <!--<i class="material-icons">account_circle</i>-->
+        <!--<br>-->
+        <!--Logged in as-->
+        <!--<br>-->
+        <!--<span>username</span>-->
+        <!--<br>-->
+    <!--</li>-->
+    <!--<li class="divider"></li>-->
+    <!--<li class="action">-->
+        <!--<button class="btn waves-effect waves-light">Logout</button>-->
+    <!--</li>-->
+<!--</ul>-->
 
 <!--SLIDE OUT MENU-->
-<ul id="side-menu" class="side-nav">
-    <li><a href="#!" class="nav-link"><i class="material-icons">home</i>Home</a></li>
-    <li><a href="#!" class="nav-link"><i class="material-icons">dns</i>Terminology Registry</a></li>
-    <li><a href="#!" class="nav-link"><i class="material-icons">assignment</i>Consent</a></li>
-    <li><a href="#!" class="nav-link"><i class="material-icons">account_balance</i>CORP</a></li>
-    <li><div class="divider"></div></li>
-    <li class="center">
-        <a class="subheader">Data Remediation</a>
-    </li>
-    <li class="reg-link"><a href="#"><i class="material-icons">keyboard_arrow_right</i> Search Remediation Queue</a></li>
-    <li class="center">
-        <a class="subheader">Message Inquiry</a>
-    </li>
-    <li class="reg-link"><a href="#"><i class="material-icons">keyboard_arrow_right</i>Message Inquiry</a></li>
-    <li class="center">
-        <a class="subheader">EMC SCI Admin</a>
-    </li>
-    <li class="reg-link"><a href="#"><i class="material-icons">keyboard_arrow_right</i>EID Remediation Search</a></li>
-    <li class="reg-link"><a href="#"><i class="material-icons">keyboard_arrow_right</i>EID Remediation Summary</a></li>
-    <li class="reg-link"><a href="#"><i class="material-icons">keyboard_arrow_right</i>Person Search</a></li>
-    <li class="center">
-        <a class="subheader">Reports</a>
-    </li>
-    <li class="reg-link"><a href="#"><i class="material-icons">keyboard_arrow_right</i>Message Error Categories</a></li>
-    <li class="reg-link"><a href="#"><i class="material-icons">keyboard_arrow_right</i>EID Match Summary</a></li>
-    <li class="reg-link"><a href="#"><i class="material-icons">keyboard_arrow_right</i>EID Balance Report</a></li>
-    <li class="center">
-        <a class="subheader">MI Exam Code Dictionary</a>
-    </li>
-    <li class="reg-link"><a href="#"><i class="material-icons">keyboard_arrow_right</i>Upload Exam Code Dictionary</a></li>
-    <li class="reg-link"><a href="#"><i class="material-icons">keyboard_arrow_right</i>Search Exam Code Dictionary</a></li>
-    <li class="reg-link"><a href="#"><i class="material-icons">keyboard_arrow_right</i>Add Exam Code</a></li>
-    <!--DUMMY-->
-    <li class="center">
-        <a class="subheader"></a>
-    </li>
-</ul>
+<!--<ul th:replace="common/side_menu :: side-menu" id="side-menu" class="side-nav">-->
+    <!--<li><a href="#!" class="nav-link"><i class="material-icons">home</i>Home</a></li>-->
+    <!--<li><a href="#!" class="nav-link"><i class="material-icons">dns</i>Terminology Registry</a></li>-->
+    <!--<li><a href="#!" class="nav-link"><i class="material-icons">assignment</i>Consent</a></li>-->
+    <!--<li><a href="#!" class="nav-link"><i class="material-icons">account_balance</i>CORP</a></li>-->
+    <!--<li><div class="divider"></div></li>-->
+    <!--<li class="center">-->
+        <!--<a class="subheader">Data Remediation</a>-->
+    <!--</li>-->
+    <!--<li class="reg-link"><a href="#"><i class="material-icons">keyboard_arrow_right</i> Search Remediation Queue</a></li>-->
+    <!--<li class="center">-->
+        <!--<a class="subheader">Message Inquiry</a>-->
+    <!--</li>-->
+    <!--<li class="reg-link"><a href="#"><i class="material-icons">keyboard_arrow_right</i>Message Inquiry</a></li>-->
+    <!--<li class="center">-->
+        <!--<a class="subheader">EMC SCI Admin</a>-->
+    <!--</li>-->
+    <!--<li class="reg-link"><a href="#"><i class="material-icons">keyboard_arrow_right</i>EID Remediation Search</a></li>-->
+    <!--<li class="reg-link"><a href="#"><i class="material-icons">keyboard_arrow_right</i>EID Remediation Summary</a></li>-->
+    <!--<li class="reg-link"><a href="#"><i class="material-icons">keyboard_arrow_right</i>Person Search</a></li>-->
+    <!--<li class="center">-->
+        <!--<a class="subheader">Reports</a>-->
+    <!--</li>-->
+    <!--<li class="reg-link"><a href="#"><i class="material-icons">keyboard_arrow_right</i>Message Error Categories</a></li>-->
+    <!--<li class="reg-link"><a href="#"><i class="material-icons">keyboard_arrow_right</i>EID Match Summary</a></li>-->
+    <!--<li class="reg-link"><a href="#"><i class="material-icons">keyboard_arrow_right</i>EID Balance Report</a></li>-->
+    <!--<li class="center">-->
+        <!--<a class="subheader">MI Exam Code Dictionary</a>-->
+    <!--</li>-->
+    <!--<li class="reg-link"><a href="#"><i class="material-icons">keyboard_arrow_right</i>Upload Exam Code Dictionary</a></li>-->
+    <!--<li class="reg-link"><a href="#"><i class="material-icons">keyboard_arrow_right</i>Search Exam Code Dictionary</a></li>-->
+    <!--<li class="reg-link"><a href="#"><i class="material-icons">keyboard_arrow_right</i>Add Exam Code</a></li>-->
+    <!--&lt;!&ndash;DUMMY&ndash;&gt;-->
+    <!--<li class="center">-->
+        <!--<a class="subheader"></a>-->
+    <!--</li>-->
+<!--</ul>-->
 
 <div class="row" id="sub-page-header">
     <br>
@@ -107,7 +132,7 @@
     </div>
     <div class="col s4 center content">
         <div class="img-holder z-depth-2">
-            <img src="images/lab_remediation_error.png" height="75px">
+            <img th:src="@{images/lab_remediation_error.png}" src="../static/images/lab_remediation_error.png" height="75px;">
         </div>
     </div>
 </div>
@@ -235,7 +260,7 @@
             <div class="col s6 input-field adv-search-field">
                 <select name="error-type" multiple url-updater>
                     <option value="" disabled selected>Error Type</option>
-                    <option value="data-exceeds-maximum-length">Data Exceeds <br>Maximum Length</option>
+                    <option value="data-exceeds-maximum-length">Data Exceeds Maximum Length</option>
                     <option value="historical-type">Historical Type</option>
                     <option value="invalid-datatype">Invalid Datatype</option>
                     <option value="location-not-active">Location Not Active</option>
@@ -549,9 +574,9 @@
 
 </div>
 
-<script src="js/mdl-material.js"></script>
-<script src="js/jquery.dataTables.min.js"></script>
-<script src="js/jquery.highlight.js"></script>
-<script src="js/search.js"></script>
+<script th:src="@{js/mdl-material.js}" src="../static/js/mdl-material.js"></script>
+<script th:src="@{js/jquery.dataTables.min.js}" src="../static/js/jquery.dataTables.min.js"></script>
+<script th:src="@{js/jquery.highlight.js}" src="../static/js/jquery.highlight.js"></script>
+<script th:src="@{js/search.js}" src="../static/js/search.js"></script>
 </body>
 </html>

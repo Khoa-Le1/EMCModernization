@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--USER ACTIONS DROPDOWN-->
+
+<ul th:fragment="user-actions" id='user-actions' class='dropdown-content'>
+    <li class="center user-info">
+        <i class="material-icons">account_circle</i>
+        <br>
+        Logged in as
+        <br>
+        <span>username</span>
+        <br>
+    </li>
+    <li class="divider"></li>
+    <li class="action">
+        <button class="btn waves-effect waves-light">Logout</button>
+    </li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--SLIDE OUT MENU-->
+
+<ul th:fragment="side-menu(currentPage)" id="side-menu" class="side-nav">
+    <li><a href="#" class="nav-link" th:classappend="${currentPage == 'home'} ? 'active' : ''"><i class="material-icons">home</i>Home</a></li>
+    <li><a href="#" class="nav-link" th:classappend="${currentPage == 'tr'} ? 'active'"><i class="material-icons">dns</i>Terminology Registry</a></li>
+    <li><a href="#" class="nav-link" th:classappend="${currentPage == 'consent'} ? 'active'"><i class="material-icons">assignment</i>Consent</a></li>
+    <li><a href="#" class="nav-link" th:classappend="${currentPage == 'corp'} ? 'active'"><i class="material-icons">account_balance</i>CORP</a></li>
+    <li><div class="divider"></div></li>
+    <li class="center">
+        <a class="subheader">Data Remediation</a>
+    </li>
+    <li class="reg-link"><a href="#"><i class="material-icons">keyboard_arrow_right</i> Search Remediation Queue</a></li>
+    <li class="center">
+        <a class="subheader">Message Inquiry</a>
+    </li>
+    <li class="reg-link"><a href="#"><i class="material-icons">keyboard_arrow_right</i>Message Inquiry</a></li>
+    <li class="center">
+        <a class="subheader">EMC SCI Admin</a>
+    </li>
+    <li class="reg-link"><a href="#"><i class="material-icons">keyboard_arrow_right</i>EID Remediation Search</a></li>
+    <li class="reg-link"><a href="#"><i class="material-icons">keyboard_arrow_right</i>EID Remediation Summary</a></li>
+    <li class="reg-link"><a href="#"><i class="material-icons">keyboard_arrow_right</i>Person Search</a></li>
+    <li class="center">
+        <a class="subheader">Reports</a>
+    </li>
+    <li class="reg-link"><a href="#"><i class="material-icons">keyboard_arrow_right</i>Message Error Categories</a></li>
+    <li class="reg-link"><a href="#"><i class="material-icons">keyboard_arrow_right</i>EID Match Summary</a></li>
+    <li class="reg-link"><a href="#"><i class="material-icons">keyboard_arrow_right</i>EID Balance Report</a></li>
+    <li class="center">
+        <a class="subheader">MI Exam Code Dictionary</a>
+    </li>
+    <li class="reg-link"><a href="#"><i class="material-icons">keyboard_arrow_right</i>Upload Exam Code Dictionary</a></li>
+    <li class="reg-link"><a href="#"><i class="material-icons">keyboard_arrow_right</i>Search Exam Code Dictionary</a></li>
+    <li class="reg-link"><a href="#"><i class="material-icons">keyboard_arrow_right</i>Add Exam Code</a></li>
+    <!--DUMMY-->
+    <li class="center">
+        <a class="subheader"></a>
+    </li>
+</ul>
+</body>
+</html>
