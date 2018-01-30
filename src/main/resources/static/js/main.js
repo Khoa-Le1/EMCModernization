@@ -156,6 +156,9 @@ function msgError(msg,duration) {
     Materialize.toast("<i class='material-icons left'>error_outline</i>&nbsp;"+msg,duration);
 }
 
+function switchForm(){
+
+}
 //EXTRA FUNCTIONALITY
 // var pageURL = new URL(location.href);
 // function addURLSearchParam(param,value) {
