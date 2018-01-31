@@ -1,12 +1,577 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org" lang="en">-->
+<!--<head >-->
+    <!--<title>Test but shouldn't be</title>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--<div th:replace="common/loading_screen :: common-loading-screen"></div>-->
+
+<!--<div th:replace="test :: test"></div>-->
+<!--</body>-->
+<!--</html>-->
+
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head >
-    <title>Test but shouldn't be</title>
+    <title>Layout Title will be replaced by Page Title!</title>
+    <title><!--layout:title-pattern="$CONTENT_TITLE"-->Layout Title will be replaced by Page Title!</title>
+    <object th:include="/common/head :: head" th:remove="tag"></object>
 </head>
 <body>
+<!--LOADING SCREEN-->
+<div id="loading-screen" class="modal">
+    <div class="modal-content valign-wrapper" style="height: 100%;">
+        <!--/*background:#ebeff4;*/-->
+        <!--background: transparent">
+<!--<h4 style="color:steelblue;">LOADING</h4>-->
+        <!--<img src="images/loading.gif" height="200">-->
+        <div class="preloader-wrapper big active">
+            <div class="spinner-layer spinner-yellow-only">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-<div th:replace="common/loading_screen :: common-loading-screen"></div>
+<!--NAVBAR-->
+<nav id="page-header">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="side-nav-bar" class="button-collapse">
+            <i class="material-icons">menu</i>
+        </a>
+        <div class="brand-logo left hide-on-small-only">
+            <img th:src="@{images/ehealth-logo.png}" src="../static/images/ehealth-logo.png">
+        </div>
+        <h5 class="brand-logo center" id="page-title">
+            REMEDIATION QUEUE
+        </h5>
+        <ul id="nav-mobile" class="right">
+            <li>
+                <a href="#" class="dropdown-button" data-activates="user-actions">
+                    <i class="material-icons left">account_box</i>
+                    User Lastname
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
 
-<div th:replace="test :: test"></div>
+<!--USER ACTIONS DROPDOWN-->
+<ul id='user-actions' class='dropdown-content'>
+    <li class="center user-info">
+        <i class="material-icons">account_circle</i>
+        <br>
+        Logged in as
+        <br>
+        <span>username</span>
+        <br>
+    </li>
+    <li class="divider"></li>
+    <li class="action">
+        <button class="btn waves-effect waves-light">Logout</button>
+    </li>
+</ul>
+
+<!--SLIDE OUT MENU-->
+<ul id="side-menu" class="side-nav">
+    <li><a href="#!" class="nav-link"><i class="material-icons">home</i>Home</a></li>
+    <li><a href="#!" class="nav-link"><i class="material-icons">dns</i>Terminology Registry</a></li>
+    <li><a href="#!" class="nav-link"><i class="material-icons">assignment</i>Consent</a></li>
+    <li><a href="#!" class="nav-link"><i class="material-icons">account_balance</i>CORP</a></li>
+    <li><div class="divider"></div></li>
+    <li class="center">
+        <a class="subheader">Data Remediation</a>
+    </li>
+    <li class="reg-link"><a href="#"><i class="material-icons">keyboard_arrow_right</i> Search Remediation Queue</a></li>
+    <li class="center">
+        <a class="subheader">Message Inquiry</a>
+    </li>
+    <li class="reg-link"><a href="#"><i class="material-icons">keyboard_arrow_right</i>Message Inquiry</a></li>
+    <li class="center">
+        <a class="subheader">EMC SCI Admin</a>
+    </li>
+    <li class="reg-link"><a href="#"><i class="material-icons">keyboard_arrow_right</i>EID Remediation Search</a></li>
+    <li class="reg-link"><a href="#"><i class="material-icons">keyboard_arrow_right</i>EID Remediation Summary</a></li>
+    <li class="reg-link"><a href="#"><i class="material-icons">keyboard_arrow_right</i>Person Search</a></li>
+    <li class="center">
+        <a class="subheader">Reports</a>
+    </li>
+    <li class="reg-link"><a href="#"><i class="material-icons">keyboard_arrow_right</i>Message Error Categories</a></li>
+    <li class="reg-link"><a href="#"><i class="material-icons">keyboard_arrow_right</i>EID Match Summary</a></li>
+    <li class="reg-link"><a href="#"><i class="material-icons">keyboard_arrow_right</i>EID Balance Report</a></li>
+    <li class="center">
+        <a class="subheader">MI Exam Code Dictionary</a>
+    </li>
+    <li class="reg-link"><a href="#"><i class="material-icons">keyboard_arrow_right</i>Upload Exam Code Dictionary</a></li>
+    <li class="reg-link"><a href="#"><i class="material-icons">keyboard_arrow_right</i>Search Exam Code Dictionary</a></li>
+    <li class="reg-link"><a href="#"><i class="material-icons">keyboard_arrow_right</i>Add Exam Code</a></li>
+    <!--DUMMY-->
+    <li class="center">
+        <a class="subheader"></a>
+    </li>
+</ul>
+
+<div class="row" id="sub-page-header">
+    <br>
+    <div class="col s4">
+    </div>
+    <div class="col s4 center content">
+        <div class="img-holder z-depth-2">
+            <img th:src="@{images/lab_remediation_error.png}" src="../static/images/lab_remediation_error.png" height="75px;">
+        </div>
+    </div>
+</div>
+<div class="row" id="sticky-page-header">
+    <div class="col s3">
+        <button class="btn-floating btn-large waves-effect waves-light button-collapse"
+                title="Show Menu Bar" id="show-menu" data-activates="side-menu">
+            <i class="material-icons medium">menu</i>
+        </button>
+    </div>
+    <div class="col s6 center content">
+        <h5>LAB REMEDIATION ERROR</h5>
+    </div>
+</div>
+
+<!---->
+<!--FORMS-->
+<!---->
+
+<div class="container" id="main">
+    <br><br>
+    <form action="/search/remediation">
+
+        <div class="row form-row z-depth-2" id="dom-sel">
+            <div class="col s12 center">
+                        <span class="btn btn-floating counter">
+                            <i class="material-icons">language</i>
+                        </span>
+                <br>
+                <h5 class="title">Domain Selection</h5>
+                <hr>
+            </div>
+            <div class="col s4 input-field">
+                <select name="domain">
+                    <option value="LAB">LAB</option>
+                </select>
+                <label>Domain</label>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row form-row z-depth-2" id="lab-rem-err">
+            <div class="col s12 center">
+                        <span class="btn btn-floating counter">
+                            <i class="material-icons">description</i>
+                        </span>
+                <br>
+                <h5 class="title">Lab Remediation Error</h5>
+                <hr>
+            </div>
+            <div class="col s4 input-field">
+                <label>Message Control ID</label>
+                <input type="text" name="message-control-id" url-updater>
+            </div>
+            <div class="col s4 input-field">
+                <label>Order Number</label>
+                <input type="text" name="order-number" url-updater>
+            </div>
+            <div class="col s4 input-field">
+                <select name="source" multiple url-updater>
+                    <option value="" disabled selected>Source</option>
+                    <option value="CHR">CHR</option>
+                    <option value="FHHR">FHHR</option>
+                    <option value="HRCA">HRCA</option>
+                    <option value="ICL">ICL</option>
+                    <option value="KRHA">KRHA</option>
+                </select>
+            </div>
+            <div class="col s4 input-field">
+                <select name="status" multiple url-updater>
+                    <option value="" disabled selected>Status</option>
+                    <option value="NEW">New</option>
+                    <option value="ASS">Assigned</option>
+                    <option value="MRR">Message Resend Requested</option>
+                    <option value="RER">Remediation Resend</option>
+                    <option value="CLO">Closed</option>
+                </select>
+            </div>
+            <div class="col s4 input-field">
+                <select name="assigned-to" url-updater>
+                    <option value="" disabled selected>Assigned To</option>
+                    <option value="jdoe">EHS - John Doe</option>
+                    <option value="jsmith1">HRS - Jane Smith</option>
+                    <option value="selse">HRS - Someone Else</option>
+                </select>
+            </div>
+            <div class="col s4 input-field">
+                <select name="message-type" multiple url-updater>
+                    <option value="" disabled selected>Message Type</option>
+                    <option value="lab-blood-bank">LAB - Blood Bank</option>
+                    <option value="lab-general">LAB - General</option>
+                    <option value="lab-microbiology">LAB - Microbiology</option>
+                    <option value="lab-pathology">LAB - Pathology</option>
+                </select>
+            </div>
+            <div class="col s4 input-field">
+                <select name="error-category" url-updater>
+                    <option value="" disabled selected>Error Category</option>
+                    <option value="cat1">Category 1</option>
+                    <option value="cat2">Category 2</option>
+                    <option value="cat3">Category 3</option>
+                </select>
+            </div>
+            <div class="col s4 input-field">
+                <select name="routable" url-updater>
+                    <option value="" disabled selected>Routable</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <div class="col s4 input-field">
+                <label>Error Description</label>
+                <input type="text" name="error-description" url-updater>
+            </div>
+
+            <div class="col s12 center adv-search">
+                <b>Advanced Search</b>
+                <hr>
+                <button type="button" class="btn btn-floating waves-light waves-effect">
+                    <i class="material-icons">add</i>
+                </button>
+            </div>
+
+            <div class="col s6 input-field adv-search-field">
+                <select name="error-type" multiple url-updater>
+                    <option value="" disabled selected>Error Type</option>
+                    <option value="data-exceeds-maximum-length">Data Exceeds Maximum Length</option>
+                    <option value="historical-type">Historical Type</option>
+                    <option value="invalid-datatype">Invalid Datatype</option>
+                    <option value="location-not-active">Location Not Active</option>
+                    <option value="location-not-found">Location Not Found</option>
+                </select>
+            </div>
+            <div class="col s6 input-field adv-search-field">
+                <select name="resolution-type" multiple url-updater>
+                    <option value="" disabled selected>Resolution Type</option>
+                    <option value="verified">Verified</option>
+                    <option value="outstanding">Outstanding</option>
+                    <option value="no-issue">No Issue</option>
+                </select>
+            </div>
+            <div class="col s6 input-field adv-search-field">
+                <label>From Date</label>
+                <input type="text" class="datepicker" name="from-date" url-updater>
+            </div>
+            <div class="col s6 input-field adv-search-field">
+                <label>To Date</label>
+                <input type="text" class="datepicker" name="to-date" url-updater>
+            </div>
+            <!--SEARCH AND CLEAR BUTTONS-->
+            <div class="col s3"></div>
+            <div class="col s3 center form-row-action">
+                <button type="button" class="btn waves-effect waves-light"
+                        onclick="fetchSearchRecords($(this).closest('form'))">
+                    <i class="material-icons left">search</i>Search
+                </button>
+            </div>
+            <div class="col s3 center form-row-action">
+                <button type="reset" class="btn waves-effect waves-light" onclick="clearPage()">
+                    <i class="material-icons left">autorenew</i>Clear
+                </button>
+            </div>
+            <div class="col s3"></div>
+
+        </div>
+
+        <br><br>
+    </form>
+
+    <div class="row form-row z-depth-2 hiddendiv" id="ser-res" style="border-bottom: none;margin-bottom: 0px">
+        <div class="col s12 center">
+                    <span class="btn btn-floating counter">
+                        <i class="material-icons">search</i>
+                    </span>
+            <br>
+            <h5 class="title">Search Results</h5>
+            <hr>
+        </div>
+    </div>
+
+    <div class="row form-row z-depth-1-half hiddendiv" style="padding: 0px; overflow-x: auto" id="res-tab">
+        <!--TABLE DYNAMICALLY LOADED HERE-->
+    </div>
+
+    <br>
+
+</div>
+
+<!--STICKY TOOLBAR-->
+<div class="row sticky-footer z-depth-2 active hiddendiv" id="sticky-action-footer">
+    <div class="col s3">
+        <i class="material-icons left">list</i>
+        Show <b id="record-count">50</b> records per page
+        <button class="btn btn-floating right waves-effect waves-light" style="margin-top: -5px">
+            <i class="material-icons">replay</i>
+        </button>
+        <p class="range-field" style="margin-bottom: 0px;margin-top: 2px">
+            <input type="range" id="page-size" min="20" max="100" value="50"
+                   onchange="$('#record-count').text($(this).val())"/>
+        </p>
+    </div>
+    <div class="col s1"></div>
+    <div class="col s4 center">
+        <ul class="pagination" style="margin-top: 20px">
+            <li class="waves-effect tooltipped" data-position="top" data-delay="50" data-tooltip="Page 1">
+                <a href="#!"><i class="material-icons">first_page</i></a>
+            </li>
+            <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+            <li class="active"><a href="#!">1</a></li>
+            <li class="waves-effect"><a href="#!">2</a></li>
+            <li class="waves-effect"><a href="#!">3</a></li>
+            <li class="waves-effect"><a href="#!">4</a></li>
+            <li class="waves-effect"><a href="#!">5</a></li>
+            <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+            <li class="waves-effect tooltipped" data-position="top" data-delay="50" data-tooltip="Page 100">
+                <a href="#!"><i class="material-icons">last_page</i></a>
+            </li>
+        </ul>
+    </div>
+    <div class="col s1"></div>
+    <div class="col s2 center">
+        <button class="btn btn-floating waves-light waves-effect msg-action toolbar-item"
+                title="Close Message(s)" onclick="openMessageAction('closeMessages')">
+            <i class="material-icons">close</i>
+        </button>
+        <button class="btn btn-floating waves-light waves-effect msg-action toolbar-item"
+                title="Assign To" onclick="openMessageAction('assignTo')">
+            <i class="material-icons">supervisor_account</i>
+        </button>
+        <button class="btn btn-floating waves-light waves-effect msg-action toolbar-item"
+                title="Remediation Resend">
+            <i class="material-icons">compare_arrows</i>
+        </button>
+    </div>
+    <div class="col s1"></div>
+</div>
+<!--TOOLBAR SHOW/HIDE BUTTON-->
+<button class="btn btn-floating waves-effect waves-light hiddendiv"
+        id="toggle-action-footer" title="Hide Toolbar" onclick="toggleToolbar($('#sticky-action-footer'),$(this))">
+    <i class="material-icons">keyboard_arrow_down</i>
+</button>
+<!--CLOSE MESSAGES ACTION MODAL-->
+<div class="modal action-modal" id="act-close-messages" data-action="closeMessages">
+    <div class="modal-content center">
+        <div class="progress hiddendiv">
+            <div class="indeterminate"></div>
+        </div>
+        Are you sure you want to close the selected message(s)?
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="col s6 center">
+                <button class="btn-flat waves-effect waves-light" onclick="closeMessages()">
+                    <i class="material-icons left">thumb_up</i>YES
+                </button>
+            </div>
+            <div class="col s6 center">
+                <button class="btn-flat waves-effect waves-light modal-close">
+                    <i class="material-icons left">thumb_down</i>CANCEL
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--ASSIGN TO ACTION MODAL-->
+<div class="modal action-modal" id="act-assign-to" data-action="assignTo">
+    <div class="modal-content center">
+        <div class="row title">
+            <div class="col s12 center">
+                <i class="material-icons medium">supervisor_account</i>
+            </div>
+            <div class="col s12 center">
+                <b>ASSIGN MESSAGE(S) TO</b>
+            </div>
+            <hr>
+        </div>
+        <div class="progress hiddendiv">
+            <div class="indeterminate"></div>
+        </div>
+        <div class="input-field">
+            <select id="sel-assign-to">
+                <option value="" disabled selected>Select a User</option>
+                <option value="jdoe">EHS - John Doe</option>
+                <option value="jsmith1">HRS - Jane Smith</option>
+                <option value="selse">HRS - Someone Else</option>
+                <option value="kkovach">HRS - Karen Kovach</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="col s6 center">
+                <button class="btn-flat waves-effect waves-light" onclick="assignTo()">
+                    <i class="material-icons left">thumb_up</i>YES
+                </button>
+            </div>
+            <div class="col s6 center">
+                <button class="btn-flat waves-effect waves-light modal-close">
+                    <i class="material-icons left">thumb_down</i>CANCEL
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="message-content-modal" class="modal message-modal modal-fixed-footer">
+    <div class="modal-content center">
+        <div class="modal-header center">
+            <h5>VIEW MESSAGE - <span data-attribute="message-control-id">12706580</span></h5>
+            <hr>
+            Lab message from Remediation Error queue
+            <br>
+            <div class="image-holder valign-wrapper">
+                <img src="images/med-document.png">
+            </div>
+        </div>
+        <br><br>
+        <div class="content">
+            <div class="row">
+                <div class="col s4 input-field">
+                    <input type="text" value="12706580" class="truncate" readonly>
+                    <label>Message Control ID</label>
+                </div>
+                <div class="col s4 input-field">
+                    <input type="text" value="L0070002" class="truncate" readonly>
+                    <label>Order ID</label>
+                </div>
+                <div class="col s4 input-field">
+                    <input type="text" value="SktnHR" class="truncate" readonly>
+                    <label>Source</label>
+                </div>
+                <div class="col s2 input-field">
+                    <input type="text" value="No" class="truncate" readonly>
+                    <label>Routable</label>
+                </div>
+                <div class="col s7 input-field">
+                    <input type="text" value="Structure invalid or not found, this sentence is too long to fit here"
+                           class="truncate" readonly>
+                    <label>Error Description</label>
+                </div>
+                <div class="col s3 input-field">
+                    <input type="text" value="31" class="truncate" readonly>
+                    <label>Error Category</label>
+                </div>
+                <div class="col s6 input-field">
+                    <input type="text" value="Non permissible value found" class="truncate" readonly>
+                    <label>Error Type</label>
+                </div>
+                <div class="col s6 input-field">
+                    <input type="text" value="2016-Mar-07 13:39:47" class="truncate" readonly>
+                    <label>Error Timestamp</label>
+                </div>
+                <!--SELECTS-->
+                <div class="col s4 input-field">
+                    <select name="resolution-type-msg">
+                        <option value="verified" selected>Verified</option>
+                        <option value="outstanding">Outstanding</option>
+                        <option value="no-issue">No Issue</option>
+                    </select>
+                    <label>Resolution Type</label>
+                </div>
+                <div class="col s4 input-field">
+                    <select name="assigned-to-msg">
+                        <option value="jdoe">EHS - John Doe</option>
+                        <option value="jsmith">HRS - Jane Smith</option>
+                        <option value="selse">EHS - Somebody Else</option>
+                        <option value="kkovach" selected>HRS - Karen Kovach</option>
+                    </select>
+                    <label>Assigned To</label>
+                </div>
+                <div class="col s4 input-field">
+                    <select name="status-msg">
+                        <option value="NEW">New</option>
+                        <option value="ASS">Assigned</option>
+                        <option value="MRR">Message Resend Requested</option>
+                        <option value="RER">Remediation Resend</option>
+                        <option value="CLO" selected>Closed</option>
+                    </select>
+                    <label>Status</label>
+                </div>
+                <div class="col s12 input-field">
+                    <textarea name="note-msg" class="materialize-textarea"></textarea>
+                    <label>Add Note</label>
+                </div>
+                <div class="col s12 input-field">
+                            <textarea name="prev-note-msg" class="materialize-textarea"
+                                      readonly>This is a sample note, please read this carefully and process the message accordingly by putting in the right values.</textarea>
+                    <label>Previous Notes</label>
+                </div>
+
+                <div class="col s12 input-field msg-content" id="view-msg-content">
+                    <span class="label">Message Content</span>
+                    <textarea class="materialize-textarea" readonly></textarea>
+                    <div class="msg-content-action center">
+                        <button class="btn waves-light waves-effect"
+                                onclick="showMessageContent($('span[data-attribute=message-control-id]').text()
+                                        ,'#view-msg-content','data/hl7.txt')">
+                            <i class="material-icons left">visibility</i>
+                            CLICK TO VIEW MESSAGE CONTENT
+                        </button>
+                        <div class="progress">
+                            <div class="indeterminate"></div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+
+                <div class="col s12 input-field msg-content" id="view-trns-msg">
+                    <span class="label">Transformed Message</span>
+                    <textarea class="materialize-textarea" readonly></textarea>
+                    <div class="msg-content-action center">
+                        <button class="btn waves-light waves-effect"
+                                onclick="showMessageContent($('span[data-attribute=message-control-id]').text()
+                                        ,'#view-trns-msg','data/hl711.txt')">
+                            <i class="material-icons left">visibility</i>
+                            CLICK TO VIEW TRANSFORMED MESSAGE
+                        </button>
+                        <div class="progress">
+                            <div class="indeterminate"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer center">
+        <a class="btn modal-close waves-effect waves-green teal lighten-2">
+            <i class="material-icons left">close</i>&nbsp;Close
+        </a>
+        <a class="btn waves-effect waves-green teal lighten-2">
+            <i class="material-icons left">save</i>&nbsp;Save
+        </a>
+    </div>
+</div>
+
+<div id="details-footer">
+
+</div>
+
+<script th:src="@{js/mdl-material.js}" src="../../static/js/mdl-material.js"></script>
+<script th:src="@{js/jquery.dataTables.min.js}" src="../../static/js/jquery.dataTables.min.js"></script>
+<script th:src="@{js/jquery.highlight.js}" src="../../static/js/jquery.highlight.js"></script>
+<script th:src="@{js/search.js}" src="../../static/js/search.js"></script>
 </body>
 </html>

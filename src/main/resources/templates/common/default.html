@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head th:include="common/head :: head(~{title})">
+    <!--<title th:text="${title}">Title will be replaced&lt;!&ndash;layout:title-pattern="$CONTENT_TITLE"&ndash;&gt;</title>-->
+    <!--<object th:include="common/head :: head(title)" th:remove="tag"></object>-->
+</head>
+<body>
+
+<!--LOADING SCREEN-->
+<div th:replace="common/loading_screen :: loading-screen" id="loading-screen" class="modal"></div>
+
+<!--NAVBAR-->
+<nav id="page-header" th:replace="common/navbar :: nav"></nav>
+
+<!--USER ACTIONS DROPDOWN-->
+<ul th:replace="common/user_actions :: user-actions" id='user-actions' class='dropdown-content'></ul>
+
+<!--SLIDE OUT MENU-->
+<ul th:replace="common/side_menu :: side-menu(${currentPage})" id="side-menu" class="side-nav"></ul>
+
+<div th:replace="common/subheaders :: remediation"></div>
+
+<div layout:fragment="content">
+
+</div>
+
+</body>
+</html>

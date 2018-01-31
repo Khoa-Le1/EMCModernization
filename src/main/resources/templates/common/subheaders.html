@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="remediation">
+    <div class="row" id="sub-page-header">
+        <br>
+        <div class="col s4">
+        </div>
+        <div class="col s4 center content">
+            <div class="img-holder z-depth-2">
+                <img th:src="@{images/lab_remediation_error.png}" src="../../static/images/lab_remediation_error.png" height="75px;">
+            </div>
+        </div>
+    </div>
+    <div class="row" id="sticky-page-header">
+        <div class="col s3">
+            <button class="btn-floating btn-large waves-effect waves-light button-collapse"
+                    title="Show Menu Bar" id="show-menu" data-activates="side-menu">
+                <i class="material-icons medium">menu</i>
+            </button>
+        </div>
+        <div class="col s6 center content">
+            <h5>LAB REMEDIATION ERROR</h5>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

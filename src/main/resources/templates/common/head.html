@@ -14,17 +14,16 @@
 
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:fragment="common-head">
-    <meta charset="UTF-8">
-    <!--<title th:include=":: #pageTitle">Layout Generic Title </title>-->
-    <title>[Sample] EMC Remediation Queue</title>
-    <link rel="stylesheet" type="text/css" href="../../static/css/mdl-material.min.css">
-    <link rel="stylesheet" type="text/css" href="../../static/css/materialize.min.css">
-    <link rel="stylesheet" type="text/css" href="../../static/css/icon.css">
-    <link rel="stylesheet" type="text/css" href="../../static/css/main.css">
-    <script src="../../static/js/jquery-3.2.1.min.js"></script>
-    <script src="../../static/js/materialize.min.js"></script>
-    <script src="../../static/js/main.js"></script>
+<head th:fragment="head(title)">
+    <meta charset="UTF-8"/>
+    <title th:text="${title}">Placeholder Title</title>
+    <link th:href="@{css/mdl-material.min.css}" rel="stylesheet" type="text/css" href="../../static/css/mdl-material.min.css"/>
+    <link th:href="@{css/materialize.min.css}" rel="stylesheet" type="text/css" href="../../static/css/materialize.min.css">
+    <link th:href="@{css/icon.css}" rel="stylesheet" type="text/css" href="../../static/css/icon.css">
+    <link th:href="@{css/main.css}" rel="stylesheet" type="text/css" href="../../static/css/main.css">
+    <script th:src="@{js/jquery-3.2.1.min.js}" src="../../static/js/jquery-3.2.1.min.js"></script>
+    <script th:src="@{js/materialize.min.js}" src="../../static/js/materialize.min.js"></script>
+    <script th:src="@{js/main.js}" src="../../static/js/main.js"></script>
 </head>
 <body>
 

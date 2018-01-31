@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<nav th:fragment="nav" id="page-header">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="side-nav-bar" class="button-collapse">
+            <i class="material-icons">menu</i>
+        </a>
+        <div class="brand-logo left hide-on-small-only">
+            <img th:src="@{images/ehealth-logo.png}" src="../../static/images/ehealth-logo.png">
+        </div>
+        <h5 th:text="${title}" class="brand-logo center" id="page-title">
+            EMC PLACEHOLDER PAGE TITLE
+        </h5>
+        <ul id="nav-mobile" class="right">
+            <li>
+                <a href="#" class="dropdown-button" data-activates="user-actions">
+                    <i class="material-icons left">account_box</i>
+                    User Lastname
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+</body>
+</html>
