@@ -323,7 +323,7 @@ span.thumb.active{
 .se-pre-con {
     margin-left: auto;
     margin-right: auto;
-    width: 15%;
+    width: auto;
     background: center no-repeat;
 }
 

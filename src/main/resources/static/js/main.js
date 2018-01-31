@@ -157,14 +157,17 @@ function msgError(msg,duration) {
     Materialize.toast("<i class='material-icons left'>error_outline</i>&nbsp;"+msg,duration);
 }
 
-function switchForm(){
-    //Loading the form
-    $(".se-pre-con").fadeIn(500);
 
+function loadForm(){
+    $(".hiddenSecondForm").attr("class", "ToggleVisibility");
+    $(".revealSecondForm").attr("class", "ToggleVisibility");
+    $(".se-pre-con").fadeIn("slow");
+    $(".se-pre-con").fadeOut("slow",switchForm());
+}
+
+function switchForm(){
     //Changes form depending on domain chosen
     if ($("#domain").val() == "CDM"){
-        $(".ToggleVisibility").attr("class", "hiddenSecondForm");
-        $(".se-pre-con").fadeOut(500);
         $(".ToggleVisibility").attr("class", "revealSecondForm");
         $("#formType").html("<h5 class=\"title\">Chronic Disease Management Message Inquiry</h5>");
         $("#source").hide();
@@ -174,8 +177,6 @@ function switchForm(){
             "                </div>");
     }
     else if($("#domain").val() == "CD"){
-        $(".ToggleVisibility").attr("class", "hiddenSecondForm");
-        $(".se-pre-con").fadeOut(500);
         $(".ToggleVisibility").attr("class", "revealSecondForm");
         $("#formType").html("<h5 class=\"title\">Clinical Document Message Inquiry</h5>");
         $("#source").hide();
@@ -185,8 +186,6 @@ function switchForm(){
             "                </div>");
     }
     else if($("#domain").val() == "CE"){
-        $(".ToggleVisibility").attr("class", "hiddenSecondForm");
-        $(".se-pre-con").fadeOut(500);
         $(".ToggleVisibility").attr("class", "revealSecondForm");
         $("#formType").html("<h5 class=\"title\">Clinical Encounter Message Inquiry</h5>");
         $("#source").hide();
@@ -196,8 +195,6 @@ function switchForm(){
             "                </div>");
     }
     else if($("#domain").val() == "LAB"){
-        $(".ToggleVisibility").attr("class", "hiddenSecondForm");
-        $(".se-pre-con").fadeOut(500);
         $(".ToggleVisibility").attr("class", "revealSecondForm");
         $("#formType").html("<h5 class=\"title\">Lab Message Inquiry</h5>");
         $("#source").hide();
@@ -207,8 +204,6 @@ function switchForm(){
             "                </div>");
     }
     else if($("#domain").val() == "MI"){
-        $(".ToggleVisibility").attr("class", "hiddenSecondForm");
-        $(".se-pre-con").fadeOut(500);
         $(".ToggleVisibility").attr("class", "revealSecondForm");
         $("#formType").html("<h5 class=\"title\">Medical Imaging Reports Message Inquiry</h5>");
         $("#source").show();
@@ -218,8 +213,11 @@ function switchForm(){
             "                </div>");
 
     }else{
-        $(".ToggleVisibility").attr("class", "hiddenSecondForm");
         $("#source").hide();
+        $(".se-pre-con").show();
+        $("#formType").html("<h5 class=\"title\">Please Select a Domain</h5>");
+        $(".hiddenSecondForm").attr("class", "ToggleVisibility");
+        $(".revealSecondForm").attr("class", "ToggleVisibility");
     }
 }
 //EXTRA FUNCTIONALITY

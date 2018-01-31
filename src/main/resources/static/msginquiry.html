@@ -150,8 +150,8 @@
                 <hr>
             </div>
             <div class="col s4 input-field">
-                <select name="domain" id="domain" onchange="switchForm()">
-
+                <select name="domain" id="domain" onchange="loadForm()">
+                    <option value="" selected></option>
                     <option value="CDM">Chronic Disease Management</option>
                     <option value="CD">Clinical Documents</option>
                     <option value="CE">Clinical Encounters</option>
@@ -164,26 +164,23 @@
 
         <br><br>
 
-
-
-
-        <div class="ToggleVisibility">
-
-            <div class="se-pre-con">
-                <img src="images/Preloader_2.gif" >
-            </div>
-
-        <br>
-
         <div class="row form-row z-depth-2" id="lab-rem-err" >
             <div class="col s12 center" id="header1">
                         <span class="btn btn-floating counter">
                             <i class="material-icons">description</i>
                         </span>
                 <br>
-                <h5 class="title" id="formType">Lab Message Inquiry</h5>
+
+
+                    <div class="se-pre-con">
+                        <img src="images/Preloader_2.gif" >
+                    </div>
+                <h5 class="title" id="formType">Please Select a Domain</h5>
                 <hr>
             </div>
+            <div class="ToggleVisibility">
+
+
 
             <div class="col s7 input-field" id="source">
                 <select name="sourceSelect" id="sourceSelect">
@@ -254,16 +251,6 @@
 
     <div class="row form-row z-depth-1-half hiddendi" style="padding: 0px; overflow-x: auto" id="res-tab">
         <!--TABLE DYNAMICALLY LOADED HERE-->
-        <table>
-            <tr>
-                <th>Month</th>
-                <th>Savings</th>
-            </tr>
-            <tr>
-                <td>January</td>
-                <td>$100</td>
-            </tr>
-        </table>
     </div>
 
     <br>
