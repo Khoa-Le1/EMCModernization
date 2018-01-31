@@ -7,6 +7,7 @@ function hideLoading(){
 var stickyHeader;
 var stickyPos;
 $(document).ready(function() {
+
     $("#loading-screen").modal({
         dismissible:false,
         endingTop: '0',
@@ -157,7 +158,14 @@ function msgError(msg,duration) {
 }
 
 function switchForm(){
+    //Loading the form
+    $(".se-pre-con").fadeIn(500);
+
+    //Changes form depending on domain chosen
     if ($("#domain").val() == "CDM"){
+        $(".ToggleVisibility").attr("class", "hiddenSecondForm");
+        $(".se-pre-con").fadeOut(500);
+        $(".ToggleVisibility").attr("class", "revealSecondForm");
         $("#formType").html("<h5 class=\"title\">Chronic Disease Management Message Inquiry</h5>");
         $("#source").hide();
         $("#element1").html("  <div class=\"col s7 input-field\" id=\"docSetID\">\n" +
@@ -166,6 +174,9 @@ function switchForm(){
             "                </div>");
     }
     else if($("#domain").val() == "CD"){
+        $(".ToggleVisibility").attr("class", "hiddenSecondForm");
+        $(".se-pre-con").fadeOut(500);
+        $(".ToggleVisibility").attr("class", "revealSecondForm");
         $("#formType").html("<h5 class=\"title\">Clinical Document Message Inquiry</h5>");
         $("#source").hide();
         $("#element1").html("  <div class=\"col s7 input-field\" id=\"docID\">\n" +
@@ -174,6 +185,9 @@ function switchForm(){
             "                </div>");
     }
     else if($("#domain").val() == "CE"){
+        $(".ToggleVisibility").attr("class", "hiddenSecondForm");
+        $(".se-pre-con").fadeOut(500);
+        $(".ToggleVisibility").attr("class", "revealSecondForm");
         $("#formType").html("<h5 class=\"title\">Clinical Encounter Message Inquiry</h5>");
         $("#source").hide();
         $("#element1").html("  <div class=\"col s7 input-field\" id=\"visitNumber\">\n" +
@@ -182,6 +196,9 @@ function switchForm(){
             "                </div>");
     }
     else if($("#domain").val() == "LAB"){
+        $(".ToggleVisibility").attr("class", "hiddenSecondForm");
+        $(".se-pre-con").fadeOut(500);
+        $(".ToggleVisibility").attr("class", "revealSecondForm");
         $("#formType").html("<h5 class=\"title\">Lab Message Inquiry</h5>");
         $("#source").hide();
         $("#element1").html("  <div class=\"col s7 input-field\" id=\"orderNumber\">\n" +
@@ -190,6 +207,9 @@ function switchForm(){
             "                </div>");
     }
     else if($("#domain").val() == "MI"){
+        $(".ToggleVisibility").attr("class", "hiddenSecondForm");
+        $(".se-pre-con").fadeOut(500);
+        $(".ToggleVisibility").attr("class", "revealSecondForm");
         $("#formType").html("<h5 class=\"title\">Medical Imaging Reports Message Inquiry</h5>");
         $("#source").show();
         $("#element1").html("  <div class=\"col s7 input-field\" id=\"docID\">\n" +
@@ -198,6 +218,7 @@ function switchForm(){
             "                </div>");
 
     }else{
+        $(".ToggleVisibility").attr("class", "hiddenSecondForm");
         $("#source").hide();
     }
 }
