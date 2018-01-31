@@ -6,6 +6,13 @@
 body{
     background: #f1efef;
 }
+
+#mainTitleBlock{
+    font-family: 'Monsterrat', sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+}
+
 #loading-screen{
     height: 100%;
     background-color: transparent;
@@ -155,7 +162,7 @@ body{
     margin-right: auto;
 }
 .dropdown-content li>a, .dropdown-content li>span{
-    font-size: 13px;
+    font-size: 16px;
     font-weight: bold;
 }
 .adv-search hr{
@@ -309,4 +316,34 @@ span.thumb.active{
 }
 .err-text{
     color: indianred;
+}
+
+.no-js #loader { display: none;  }
+.js #loader { display: block; position: absolute;  top: 0; }
+.se-pre-con {
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+    background: center no-repeat;
+}
+
+.ToggleVisibility{
+    display: none;
+}
+
+
+.hiddenSecondForm{
+    display: none;
+}
+
+.revealSecondForm{
+    display: block;
+}
+
+.spacing{
+    margin-bottom: 10px;
+}
+
+.newline{
+    float:left;
 }

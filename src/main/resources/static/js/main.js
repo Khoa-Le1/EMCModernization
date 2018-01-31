@@ -7,6 +7,7 @@ function hideLoading(){
 var stickyHeader;
 var stickyPos;
 $(document).ready(function() {
+
     $("#loading-screen").modal({
         dismissible:false,
         endingTop: '0',
@@ -156,6 +157,69 @@ function msgError(msg,duration) {
     Materialize.toast("<i class='material-icons left'>error_outline</i>&nbsp;"+msg,duration);
 }
 
+
+function loadForm(){
+    $(".hiddenSecondForm").attr("class", "ToggleVisibility");
+    $(".revealSecondForm").attr("class", "ToggleVisibility");
+    $(".se-pre-con").fadeIn("slow");
+    $(".se-pre-con").fadeOut("slow",switchForm());
+}
+
+function switchForm(){
+    //Changes form depending on domain chosen
+    if ($("#domain").val() == "CDM"){
+        $(".ToggleVisibility").attr("class", "revealSecondForm");
+        $("#formType").html("<h5 class=\"title\">Chronic Disease Management Message Inquiry</h5>");
+        $("#source").hide();
+        $("#element1").html("  <div class=\"col s7 input-field\" id=\"docSetID\">\n" +
+            "                    <label>Document Set ID</label>\n" +
+            "                    <input type=\"text\" name=\"document-setID\" url-updater>\n" +
+            "                </div>");
+    }
+    else if($("#domain").val() == "CD"){
+        $(".ToggleVisibility").attr("class", "revealSecondForm");
+        $("#formType").html("<h5 class=\"title\">Clinical Document Message Inquiry</h5>");
+        $("#source").hide();
+        $("#element1").html("  <div class=\"col s7 input-field\" id=\"docID\">\n" +
+            "                    <label>Document ID</label>\n" +
+            "                    <input type=\"text\" name=\"doc-ID\" url-updater>\n" +
+            "                </div>");
+    }
+    else if($("#domain").val() == "CE"){
+        $(".ToggleVisibility").attr("class", "revealSecondForm");
+        $("#formType").html("<h5 class=\"title\">Clinical Encounter Message Inquiry</h5>");
+        $("#source").hide();
+        $("#element1").html("  <div class=\"col s7 input-field\" id=\"visitNumber\">\n" +
+            "                    <label>Visit Number</label>\n" +
+            "                    <input type=\"text\" name=\"visit-number\" url-updater>\n" +
+            "                </div>");
+    }
+    else if($("#domain").val() == "LAB"){
+        $(".ToggleVisibility").attr("class", "revealSecondForm");
+        $("#formType").html("<h5 class=\"title\">Lab Message Inquiry</h5>");
+        $("#source").hide();
+        $("#element1").html("  <div class=\"col s7 input-field\" id=\"orderNumber\">\n" +
+            "                    <label>Order Number</label>\n" +
+            "                    <input type=\"text\" name=\"order-number\" url-updater>\n" +
+            "                </div>");
+    }
+    else if($("#domain").val() == "MI"){
+        $(".ToggleVisibility").attr("class", "revealSecondForm");
+        $("#formType").html("<h5 class=\"title\">Medical Imaging Reports Message Inquiry</h5>");
+        $("#source").show();
+        $("#element1").html("  <div class=\"col s7 input-field\" id=\"docID\">\n" +
+            "                    <label>Document ID</label>\n" +
+            "                    <input type=\"text\" name=\"doc-ID\" url-updater>\n" +
+            "                </div>");
+
+    }else{
+        $("#source").hide();
+        $(".se-pre-con").show();
+        $("#formType").html("<h5 class=\"title\">Please Select a Domain</h5>");
+        $(".hiddenSecondForm").attr("class", "ToggleVisibility");
+        $(".revealSecondForm").attr("class", "ToggleVisibility");
+    }
+}
 //EXTRA FUNCTIONALITY
 // var pageURL = new URL(location.href);
 // function addURLSearchParam(param,value) {
