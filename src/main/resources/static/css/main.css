@@ -6,6 +6,13 @@
 body{
     background: #f1efef;
 }
+
+#mainTitleBlock{
+    font-family: 'Monsterrat', sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+}
+
 #loading-screen{
     height: 100%;
     background-color: transparent;

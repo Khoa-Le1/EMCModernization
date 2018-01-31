@@ -127,8 +127,8 @@
             <i class="material-icons medium">menu</i>
         </button>
     </div>
-    <div class="col s6 center content">
-        <h5>MESSAGE INQUIRY</h5>
+    <div class="col s6 center content" >
+        <h5 id="mainTitleBlock">MESSAGE INQUIRY</h5>
     </div>
 </div>
 
@@ -155,12 +155,14 @@
                     <option value="CDM">Chronic Disease Management</option>
                     <option value="CD">Clinical Documents</option>
                     <option value="CE">Clinical Encounters</option>
-                    <option value="LAB" selected>LAB</option>
+                    <option value="LAB">LAB</option>
                     <option value="MI">Medical Imaging</option>
                 </select>
                 <label>Domain</label>
             </div>
         </div>
+
+        <br><br>
 
         <div class="row form-row z-depth-2" id="lab-rem-err" >
             <div class="col s12 center" id="header1">
@@ -168,11 +170,18 @@
                             <i class="material-icons">description</i>
                         </span>
                 <br>
-                <h5 class="title">Lab Message Inquiry</h5>
+                <h5 class="title" id="formType">Lab Message Inquiry</h5>
                 <hr>
             </div>
 
-            <div id="source">
+            <div class="col s7 input-field" id="source">
+                <select name="sourceSelect" id="sourceSelect">
+                    <option value="CBR-MAYFAIR">CBR-MAYFAIR</option>
+                    <option value="CBR-RAR">CBR-RAR</option>
+                    <option value="RIS_HNAM">RIS_HNAM</option>
+                    <option value="RIS_XIRIS">RIS_XIRIS</option>
+                </select>
+                <label>Source</label>
             </div>
 
             <div class="col s7 input-field">
