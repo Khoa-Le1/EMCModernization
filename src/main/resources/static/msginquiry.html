@@ -150,7 +150,7 @@
                 <hr>
             </div>
             <div class="col s4 input-field">
-                <select name="domain" id="domain">
+                <select name="domain" id="domain" onchange="switchForm()">
 
                     <option value="CDM">Chronic Disease Management</option>
                     <option value="CD">Clinical Documents</option>
@@ -162,10 +162,8 @@
             </div>
         </div>
 
-        <br>
-
-        <div class="row form-row z-depth-2" id="lab-rem-err">
-            <div class="col s12 center">
+        <div class="row form-row z-depth-2" id="lab-rem-err" >
+            <div class="col s12 center" id="header1">
                         <span class="btn btn-floating counter">
                             <i class="material-icons">description</i>
                         </span>
@@ -173,17 +171,19 @@
                 <h5 class="title">Lab Message Inquiry</h5>
                 <hr>
             </div>
+
+            <div id="source">
+            </div>
+
             <div class="col s7 input-field">
                 <label>Message Control ID</label>
                 <input type="text" name="message-control-id" url-updater>
             </div>
 
 
-
-            <div class="col s7 input-field">
-                <label>Order Number</label>
-                <input type="text" name="order-number" url-updater>
+            <div id="element1">
             </div>
+
 
 
             <div class="col s12 center adv-search">

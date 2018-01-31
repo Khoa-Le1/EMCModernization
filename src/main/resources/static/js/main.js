@@ -157,19 +157,71 @@ function msgError(msg,duration) {
 }
 
 function switchForm(){
+    /*
+    var docSetID = "  <div class=\"col s7 input-field\" id=\"docSetID\">\n" +
+        "                    <label>Document Set ID</label>\n" +
+        "                    <input type=\"text\" name=\"document-setID\" url-updater>\n" +
+        "                </div>";
+    var orderNumber = "  <div class=\"col s7 input-field\" id=\"orderNumber\">\n" +
+        "                    <label>Order Number</label>\n" +
+        "                    <input type=\"text\" name=\"order-number\" url-updater>\n" +
+        "                </div>";
+    var visitNum = "  <div class=\"col s7 input-field\" id=\"visitNumber\">\n" +
+        "                    <label>Visit Number</label>\n" +
+        "                    <input type=\"text\" name=\"visit-number\" url-updater>\n" +
+        "                </div>";
+    var docID = "  <div class=\"col s7 input-field\" id=\"docID\">\n" +
+        "                    <label>Document ID</label>\n" +
+        "                    <input type=\"text\" name=\"doc-ID\" url-updater>\n" +
+        "                </div>";
+        */
+    //var source = "";
     if ($("#domain").val() == "CDM"){
-
+        $("#source").html("<div id=\"source\">\n" +
+            "            </div>");
+        $("#element1").html("  <div class=\"col s7 input-field\" id=\"docSetID\">\n" +
+            "                    <label>Document Set ID</label>\n" +
+            "                    <input type=\"text\" name=\"document-setID\" url-updater>\n" +
+            "                </div>");
     }
     else if($("#domain").val() == "CD"){
-
+        $("#source").html("<div id=\"source\">\n" +
+            "            </div>");
+        $("#element1").html("  <div class=\"col s7 input-field\" id=\"docID\">\n" +
+            "                    <label>Document ID</label>\n" +
+            "                    <input type=\"text\" name=\"doc-ID\" url-updater>\n" +
+            "                </div>");
     }
     else if($("#domain").val() == "CE"){
-
+        $("#source").html("<div id=\"source\">\n" +
+            "            </div>");
+        $("#element1").html("  <div class=\"col s7 input-field\" id=\"visitNumber\">\n" +
+            "                    <label>Visit Number</label>\n" +
+            "                    <input type=\"text\" name=\"visit-number\" url-updater>\n" +
+            "                </div>");
     }
     else if($("#domain").val() == "LAB"){
-
+        $("#source").html("<div id=\"source\">\n" +
+            "            </div>");
+        $("#element1").html("  <div class=\"col s7 input-field\" id=\"orderNumber\">\n" +
+            "                    <label>Order Number</label>\n" +
+            "                    <input type=\"text\" name=\"order-number\" url-updater>\n" +
+            "                </div>");
     }
     else if($("#domain").val() == "MI"){
+        $("#source").html("<div class=\"col s7 input-field\" id=\"source\">\n" +
+            "                <select name=\"sourceSelect\" id=\"sourceSelect\">\n" +
+            "                                    <option value=\\\"CBR-MAYFAIR\\\">CBR-MAYFAIR</option>\n" +
+            "                                    <option value=\\\"CBR-RAR\\\">CBR-RAR</option>\n" +
+            "                                    <option value=\\\"RIS_HNAM\\\">RIS_HNAM</option>\n" +
+            "                                    <option value=\\\"RIS_XIRIS\\\">RIS_XIRIS</option>\n" +
+            "                                </select>\n" +
+            "                            <label>Source</label>\n" +
+            "            </div>");
+        $("#element1").html("  <div class=\"col s7 input-field\" id=\"docID\">\n" +
+            "                    <label>Document ID</label>\n" +
+            "                    <input type=\"text\" name=\"doc-ID\" url-updater>\n" +
+            "                </div>");
 
     }else{
 
