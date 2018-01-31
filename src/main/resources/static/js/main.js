@@ -157,7 +157,23 @@ function msgError(msg,duration) {
 }
 
 function switchForm(){
+    if ($("#domain").val() == "CDM"){
 
+    }
+    else if($("#domain").val() == "CD"){
+
+    }
+    else if($("#domain").val() == "CE"){
+
+    }
+    else if($("#domain").val() == "LAB"){
+
+    }
+    else if($("#domain").val() == "MI"){
+
+    }else{
+
+    }
 }
 //EXTRA FUNCTIONALITY
 // var pageURL = new URL(location.href);
