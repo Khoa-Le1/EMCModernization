@@ -339,3 +339,11 @@ span.thumb.active{
 .revealSecondForm{
     display: block;
 }
+
+.spacing{
+    margin-bottom: 10px;
+}
+
+.newline{
+    float:left;
+}
