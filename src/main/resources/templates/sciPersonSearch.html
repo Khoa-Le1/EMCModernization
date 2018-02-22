@@ -2,13 +2,13 @@
 <html>
 <head>
     <title>EMC Remediation Queue</title>
-    <link rel="stylesheet" type="text/css" href="css/mdl-material.min.css">
-    <link rel="stylesheet" type="text/css" href="css/materialize.min.css">
-    <link rel="stylesheet" type="text/css" href="css/icon.css">
-    <link rel="stylesheet" type="text/css" href="css/main.css">
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/materialize.min.js"></script>
-    <script src="js/main.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/css/mdl-material.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/icon.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/main.css">
+    <script src="../static/js/jquery-3.2.1.min.js"></script>
+    <script src="../static/js/materialize.min.js"></script>
+    <script src="../static/js/main.js"></script>
 </head>
 <body>
 <!--LOADING SCREEN-->
@@ -39,7 +39,7 @@
             <i class="material-icons">menu</i>
         </a>
         <div class="brand-logo left hide-on-small-only">
-            <img src="images/ehealth-logo.png">
+            <img src="../static/images/ehealth-logo.png">
         </div>
         <h5 class="brand-logo center" id="page-title">
             REMEDIATION QUEUE
@@ -116,7 +116,7 @@
     </div>
     <div class="col s4 center content">
         <div class="img-holder z-depth-2">
-            <img src="images/lab_remediation_error.png" height="75px">
+            <img src="../static/images/lab_remediation_error.png" height="75px">
         </div>
     </div>
 </div>
@@ -128,9 +128,10 @@
         </button>
     </div>
     <div class="col s6 center content">
-        <h5>LAB REMEDIATION ERROR</h5>
+        <h5>SLRR PERSON SEARCH</h5>
     </div>
 </div>
+
 
 <!---->
 <!--FORMS-->
@@ -165,7 +166,7 @@
                             <i class="material-icons">description</i>
                         </span>
                 <br>
-                <h5 class="title">Lab Remediation Error</h5>
+                <h5 class="title">SLRR PERSON SEARCH</h5>
                 <hr>
             </div>
             <div class="col s4 input-field">
@@ -176,6 +177,21 @@
                 <label>Order Number</label>
                 <input type="text" name="order-number" url-updater>
             </div>
+
+            <div class="col s6 input-field adv-search-field">
+                <label>Order Message From Date</label>
+                <input type="text" class="datepicker" name="order-msg-from-date" url-updater>
+            </div>
+            <div class="col s6 input-field adv-search-field">
+                <label>Order Message To Date</label>
+                <input type="text" class="datepicker" name="order-msg-to-date" url-updater>
+            </div>
+
+            <div class="col s4 input-field">
+                <label>EID</label>
+                <input type="text" name="EID" url-updater>
+            </div>
+
             <div class="col s4 input-field">
                 <select name="source" multiple url-updater>
                     <option value="" disabled selected>Source</option>
@@ -194,54 +210,39 @@
                     <option value="SktnHR">SktnHR</option>
                 </select>
             </div>
+
             <div class="col s4 input-field">
-                <select name="status" multiple url-updater>
-                    <option value="" disabled selected>Status</option>
-                    <option value="NEW">New</option>
-                    <option value="ASS">Assigned</option>
-                    <option value="MRR">Message Resend Requested</option>
-                    <option value="RER">Remediation Resend</option>
-                    <option value="CLO">Closed</option>
-                    <option value="AUCLO">Auto-Closed</option>
-                    <option value="RES">Resolved</option>
-                </select>
+                <label>Source ID</label>
+                <input type="text" name="source-ID" url-updater>
             </div>
+
             <div class="col s4 input-field">
-                <select name="assigned-to" url-updater>
-                    <option value="" disabled selected>Assigned To</option>
-                    <option value="jdoe">EHS - John Doe</option>
-                    <option value="jsmith1">HRS - Jane Smith</option>
-                    <option value="selse">HRS - Someone Else</option>
-                </select>
+                <label>HSN</label>
+                <input type="text" name="HSN" url-updater>
             </div>
+
             <div class="col s4 input-field">
-                <select name="message-type" multiple url-updater>
-                    <option value="" disabled selected>Message Type</option>
-                    <option value="lab-blood-bank">LAB - Blood Bank</option>
-                    <option value="lab-general">LAB - General</option>
-                    <option value="lab-microbiology">LAB - Microbiology</option>
-                    <option value="lab-pathology">LAB - Pathology</option>
-                </select>
+                <label>Last Name</label>
+                <input type="text" name="ln" url-updater>
             </div>
+
+            <div class="col s6 input-field">
+                <label>First Name</label>
+                <input type="text" name="fn" url-updater>
+            </div>
+
+            <br>
+
             <div class="col s4 input-field">
-                <select name="error-category" url-updater>
-                    <option value="" disabled selected>Error Category</option>
-                    <option value="cat1">Category 1</option>
-                    <option value="cat2">Category 2</option>
-                    <option value="cat3">Category 3</option>
-                </select>
+                <label>Middle Name</label>
+                <input type="text" name="mn" url-updater>
             </div>
+
             <div class="col s4 input-field">
-                <select name="routable" url-updater>
-                    <option value="" disabled selected>Routable</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
+                <label>Gender</label>
+                <input type="text" name="gender" url-updater>
             </div>
-            <div class="col s4 input-field">
-                <label>Error Description</label>
-                <input type="text" name="error-description" url-updater>
-            </div>
+
             <div class="col s12 center adv-search">
                 <b>Advanced Search</b>
                 <hr>
@@ -250,32 +251,6 @@
                 </button>
             </div>
 
-            <div class="col s6 input-field adv-search-field">
-                <select name="error-type" multiple url-updater>
-                    <option value="" disabled selected>Error Type</option>
-                    <option value="data-exceeds-maximum-length">Data Exceeds <br>Maximum Length</option>
-                    <option value="historical-type">Historical Type</option>
-                    <option value="invalid-datatype">Invalid Datatype</option>
-                    <option value="location-not-active">Location Not Active</option>
-                    <option value="location-not-found">Location Not Found</option>
-                </select>
-            </div>
-            <div class="col s6 input-field adv-search-field">
-                <select name="resolution-type" multiple url-updater>
-                    <option value="" disabled selected>Resolution Type</option>
-                    <option value="verified">Verified</option>
-                    <option value="outstanding">Outstanding</option>
-                    <option value="no-issue">No Issue</option>
-                </select>
-            </div>
-            <div class="col s6 input-field adv-search-field">
-                <label>From Date</label>
-                <input type="text" class="datepicker" name="from-date" url-updater>
-            </div>
-            <div class="col s6 input-field adv-search-field">
-                <label>To Date</label>
-                <input type="text" class="datepicker" name="to-date" url-updater>
-            </div>
             <!--SEARCH AND CLEAR BUTTONS-->
             <div class="col s3"></div>
             <div class="col s3 center form-row-action">
@@ -440,7 +415,7 @@
             Lab message from Remediation Error queue
             <br>
             <div class="image-holder valign-wrapper">
-                <img src="images/med-document.png">
+                <img src="../static/images/med-document.png">
             </div>
         </div>
         <br><br>
@@ -567,9 +542,9 @@
 
 </div>
 
-<script src="js/mdl-material.js"></script>
-<script src="js/jquery.dataTables.min.js"></script>
-<script src="js/jquery.highlight.js"></script>
-<script src="js/search.js"></script>
+<script src="../static/js/mdl-material.js"></script>
+<script src="../static/js/jquery.dataTables.min.js"></script>
+<script src="../static/js/jquery.highlight.js"></script>
+<script src="../static/js/search.js"></script>
 </body>
-</html>
+
