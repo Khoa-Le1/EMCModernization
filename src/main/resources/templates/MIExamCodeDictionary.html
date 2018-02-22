@@ -2,13 +2,13 @@
 <html>
 <head>
     <title>EMC Remediation Queue</title>
-    <link rel="stylesheet" type="text/css" href="css/mdl-material.min.css">
-    <link rel="stylesheet" type="text/css" href="css/materialize.min.css">
-    <link rel="stylesheet" type="text/css" href="css/icon.css">
-    <link rel="stylesheet" type="text/css" href="css/main.css">
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/materialize.min.js"></script>
-    <script src="js/main.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/css/mdl-material.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/icon.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/main.css">
+    <script src="../static/js/jquery-3.2.1.min.js"></script>
+    <script src="../static/js/materialize.min.js"></script>
+    <script src="../static/js/main.js"></script>
 </head>
 <body>
 <!--LOADING SCREEN-->
@@ -39,7 +39,7 @@
             <i class="material-icons">menu</i>
         </a>
         <div class="brand-logo left hide-on-small-only">
-            <img src="images/ehealth-logo.png">
+            <img src="../static/images/ehealth-logo.png">
         </div>
         <h5 class="brand-logo center" id="page-title">
             Remediation Queue
@@ -81,17 +81,17 @@
     <li class="center">
         <a class="subheader">Data Remediation</a>
     </li>
-    <li class="reg-link"><a href="dataRemediationQueue.html"><i class="material-icons">keyboard_arrow_right</i> Search Remediation Queue</a></li>
+    <li class="reg-link"><a href="#"><i class="material-icons">keyboard_arrow_right</i> Search Remediation Queue</a></li>
     <li class="center">
         <a class="subheader">Message Inquiry</a>
     </li>
-    <li class="reg-link"><a href="msginquiry.html"><i class="material-icons">keyboard_arrow_right</i>Message Inquiry</a></li>
+    <li class="reg-link"><a href="#"><i class="material-icons">keyboard_arrow_right</i>Message Inquiry</a></li>
     <li class="center">
         <a class="subheader">EMC SCI Admin</a>
     </li>
-    <li class="reg-link"><a href="sciEIDRemediationSearch.html"><i class="material-icons">keyboard_arrow_right</i>EID Remediation Search</a></li>
-    <li class="reg-link"><a href="sciEIDRemediationSummary.html"><i class="material-icons">keyboard_arrow_right</i>EID Remediation Summary</a></li>
-    <li class="reg-link"><a href="sciPersonSearch.html"><i class="material-icons">keyboard_arrow_right</i>Person Search</a></li>
+    <li class="reg-link"><a href="#"><i class="material-icons">keyboard_arrow_right</i>EID Remediation Search</a></li>
+    <li class="reg-link"><a href="#"><i class="material-icons">keyboard_arrow_right</i>EID Remediation Summary</a></li>
+    <li class="reg-link"><a href="#"><i class="material-icons">keyboard_arrow_right</i>Person Search</a></li>
     <li class="center">
         <a class="subheader">Reports</a>
     </li>
@@ -116,7 +116,7 @@
     </div>
     <div class="col s4 center content">
         <div class="img-holder z-depth-2">
-            <img src="images/lab_remediation_error.png" height="75px">
+            <img src="../static/images/lab_remediation_error.png" height="75px">
         </div>
     </div>
 </div>
@@ -127,8 +127,8 @@
             <i class="material-icons medium">menu</i>
         </button>
     </div>
-    <div class="col s6 center content" >
-        <h5 id="mainTitleBlock">MESSAGE INQUIRY</h5>
+    <div class="col s6 center content">
+        <h5>MESSAGE INQUIRY</h5>
     </div>
 </div>
 
@@ -150,56 +150,41 @@
                 <hr>
             </div>
             <div class="col s4 input-field">
-                <select name="domain" id="domain" onchange="loadForm()">
-                    <option value="" selected></option>
+                <select name="domain">
+
                     <option value="CDM">Chronic Disease Management</option>
                     <option value="CD">Clinical Documents</option>
                     <option value="CE">Clinical Encounters</option>
-                    <option value="LAB">LAB</option>
+                    <option value="LAB" selected>LAB</option>
                     <option value="MI">Medical Imaging</option>
                 </select>
                 <label>Domain</label>
             </div>
         </div>
 
-        <br><br>
+        <br>
 
-        <div class="row form-row z-depth-2" id="lab-rem-err" >
-            <div class="col s12 center" id="header1">
+        <div class="row form-row z-depth-2" id="lab-rem-err">
+            <div class="col s12 center">
                         <span class="btn btn-floating counter">
                             <i class="material-icons">description</i>
                         </span>
                 <br>
-
-
-                    <div class="se-pre-con">
-                        <img src="images/Preloader_2.gif" >
-                    </div>
-                <h5 class="title" id="formType">Please Select a Domain</h5>
+                <h5 class="title">Lab Message Inquiry</h5>
                 <hr>
             </div>
-            <div class="ToggleVisibility">
-
-
-
-            <div class="col s7 input-field" id="source">
-                <select name="sourceSelect" id="sourceSelect">
-                    <option value="CBR-MAYFAIR">CBR-MAYFAIR</option>
-                    <option value="CBR-RAR">CBR-RAR</option>
-                    <option value="RIS_HNAM">RIS_HNAM</option>
-                    <option value="RIS_XIRIS">RIS_XIRIS</option>
-                </select>
-                <label>Source</label>
-            </div>
-
             <div class="col s7 input-field">
                 <label>Message Control ID</label>
                 <input type="text" name="message-control-id" url-updater>
             </div>
 
 
-            <div id="element1">
+
+            <div class="col s7 input-field">
+                <label>Order Number</label>
+                <input type="text" name="order-number" url-updater>
             </div>
+
 
             <div class="col s12 center adv-search">
                 <b>Advanced Search</b>
@@ -217,9 +202,6 @@
                 <label>To Date</label>
                 <input type="text" class="datepicker" name="to-date" url-updater>
             </div>
-
-
-
             <!--SEARCH AND CLEAR BUTTONS-->
             <div class="col s3"></div>
             <div class="col s3 center form-row-action">
@@ -234,10 +216,12 @@
                 </button>
             </div>
             <div class="col s3"></div>
+
         </div>
+
         <br><br>
     </form>
-</div>
+
     <div class="row form-row z-depth-2 " id="ser-res" style="border-bottom: none;margin-bottom: 0px">
         <div class="col s12 center">
                     <span class="btn btn-floating counter">
@@ -249,8 +233,18 @@
         </div>
     </div>
 
-    <div class="row form-row z-depth-1-half hiddendi" style="padding: 0px; overflow-x: auto" id="res-tab">
+    <div class="row form-row z-depth-1-half " style="padding: 0px; overflow-x: auto" id="res-tab">
         <!--TABLE DYNAMICALLY LOADED HERE-->
+        <table>
+            <tr>
+                <th>Month</th>
+                <th>Savings</th>
+            </tr>
+            <tr>
+                <td>January</td>
+                <td>$100</td>
+            </tr>
+        </table>
     </div>
 
     <br>
@@ -382,7 +376,7 @@
             Lab message from Remediation Error queue
             <br>
             <div class="image-holder valign-wrapper">
-                <img src="images/med-document.png">
+                <img src="../static/images/med-document.png">
             </div>
         </div>
         <br><br>
@@ -509,9 +503,8 @@
 
 </div>
 
-<script src="js/mdl-material.js"></script>
-<script src="js/jquery.dataTables.min.js"></script>
-<script src="js/jquery.highlight.js"></script>
-<script src="js/search.js"></script>
+<script src="../static/js/mdl-material.js"></script>
+<script src="../static/js/jquery.dataTables.min.js"></script>
+<script src="../static/js/jquery.highlight.js"></script>
+<script src="../static/js/search.js"></script>
 </body>
-</html>
