@@ -1,15 +1,14 @@
-
 <!DOCTYPE html>
 <html>
 <head>
     <title>EMC Remediation Queue</title>
-    <link rel="stylesheet" type="text/css" href="../static/css/mdl-material.min.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/materialize.min.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/icon.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/main.css">
-    <script src="../static/js/jquery-3.2.1.min.js"></script>
-    <script src="../static/js/materialize.min.js"></script>
-    <script src="../static/js/main.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/mdl-material.min.css">
+    <link rel="stylesheet" type="text/css" href="css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="css/icon.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script src="js/main.js"></script>
 </head>
 <body>
 <!--LOADING SCREEN-->
@@ -42,7 +41,7 @@
             <i class="material-icons">menu</i>
         </a>
         <div class="brand-logo left hide-on-small-only">
-            <img src="../static/images/ehealth-logo.png">
+            <img src="images/ehealth-logo.png">
         </div>
         <h5 class="brand-logo center" id="page-title">
             Remediation Queue
@@ -76,7 +75,7 @@
 
 <!--SLIDE OUT MENU-->
 <ul id="side-menu" class="side-nav">
-    <li><a href="home.html" class="nav-link"><i class="material-icons">home</i>Home</a></li>
+    <li><a href="#!" class="nav-link"><i class="material-icons">home</i>Home</a></li>
     <li><a href="#!" class="nav-link"><i class="material-icons">dns</i>Terminology Registry</a></li>
     <li><a href="#!" class="nav-link"><i class="material-icons">assignment</i>Consent</a></li>
     <li><a href="#!" class="nav-link"><i class="material-icons">account_balance</i>CORP</a></li>
@@ -127,7 +126,7 @@
     </div>
     <div class="col s4 center content">
         <div class="img-holder z-depth-2">
-            <img src="../static/images/lab_remediation_error.png" height="75px">
+            <img src="images/lab_remediation_error.png" height="75px">
         </div>
     </div>
 </div>
@@ -160,7 +159,6 @@
                 <h5 class="title">Domain Selection</h5>
                 <hr>
             </div>
-            <br>
             <div class="col s4 input-field">
                 <select name="domain" id="domain" onchange="loadForm()">
                     <option value="" selected></option>
@@ -185,12 +183,11 @@
 
 
                 <div class="se-pre-con">
-                    <img src="../static/images/Preloader_2.gif">
+                    <img src="images/Preloader_2.gif">
                 </div>
                 <h5 class="title" id="formType">Please Select a Domain</h5>
                 <hr>
             </div>
-
             <div class="ToggleVisibility">
                 <div class="col s7 input-field">
                     <label>Message Control ID</label>
@@ -299,72 +296,6 @@
 
 <div class="row form-row z-depth-1-half hiddendi" style="padding: 0px; overflow-x: auto" id="res-tab">
     <!--TABLE DYNAMICALLY LOADED HERE-->
-    <table>
-        <thead>
-            <tr>
-                <th>PersonID</th>
-                <th>LastName</th>
-                <th>FirstName</th>
-                <th>Address</th>
-                <th>City</th>
-            </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <c:foreach var = "PERSONS" items = "${USERS}">
-                <td>${USERS.personID}</td>
-                <td>${USERS.lastName}</td>
-                <td>${USERS.firstName}</td>
-                <td>${USERS.address}</td>
-                <td>${USERS.city}</td>
-            </c:foreach>
-        </tr>
-
-
-        <tr>
-            <c:foreach var = "PERSONS" items = "${USERS}">
-                <td><a href="#"> 00001</a></td>
-                <td>Le</td>
-                <td>Khoa</td>
-                <td>Some Address</td>
-                <td>Some city</td>
-            </c:foreach>
-        </tr>
-
-        <tr>
-            <c:foreach var = "PERSONS" items = "${USERS}">
-                <td><a href="#"> 00002</a></td>
-                <td>Doe</td>
-                <td>John</td>
-                <td>Some Address</td>
-                <td>Some city</td>
-            </c:foreach>
-        </tr>
-
-
-        <tr>
-            <c:foreach var = "PERSONS" items = "${USERS}">
-                <td><a href="#"> 00003</a></td>
-                <td>Mae</td>
-                <td>Sally</td>
-                <td>Some Address</td>
-                <td>Some city</td>
-            </c:foreach>
-        </tr>
-
-        <tr>
-            <c:foreach var = "PERSONS" items = "${USERS}">
-                <td><a href="#"> 00003</a></td>
-                <td>Thatcher</td>
-                <td>Margret</td>
-                <td>Some Address</td>
-                <td>Some city</td>
-            </c:foreach>
-        </tr>
-
-
-        </tbody>
-    </table>
 </div>
 
 <br>
@@ -496,7 +427,7 @@
             Lab message from Remediation Error queue
             <br>
             <div class="image-holder valign-wrapper">
-                <img src="../static/images/med-document.png">
+                <img src="images/med-document.png">
             </div>
         </div>
         <br><br>
@@ -620,27 +551,12 @@
 </div>
 
 <div id="details-footer">
-    <div class="nav-wrapper">
-        <a href="#" data-activates="side-nav-bar" class="button-collapse">
-            <i class="material-icons">menu</i>
-        </a>
-        <div class="brand-logo left hide-on-small-only">
-            <img src="../static/images/ehealth-logo.png">
-        </div>
-        <ul id="nav-mobile" class="right">
-            <li>
-                <a href="#" class="dropdown-button" data-activates="user-actions">
-                    <i class="material-icons left">account_box</i>
-                    User Lastname
-                </a>
-            </li>
-        </ul>
-    </div>
+
 </div>
 
-<script src="../static/js/mdl-material.js"></script>
-<script src="../static/js/jquery.dataTables.min.js"></script>
-<script src="../static/js/jquery.highlight.js"></script>
-<script src="../static/js/search.js"></script>
+<script src="js/mdl-material.js"></script>
+<script src="js/jquery.dataTables.min.js"></script>
+<script src="js/jquery.highlight.js"></script>
+<script src="js/search.js"></script>
 </body>
 </html>
