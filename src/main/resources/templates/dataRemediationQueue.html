@@ -1,6 +1,3 @@
-<!--
-Khoa
--->
 
 <!DOCTYPE html>
 <html>
@@ -79,7 +76,7 @@ Khoa
 
 <!--SLIDE OUT MENU-->
 <ul id="side-menu" class="side-nav">
-    <li><a href="#!" class="nav-link"><i class="material-icons">home</i>Home</a></li>
+    <li><a href="home.html" class="nav-link"><i class="material-icons">home</i>Home</a></li>
     <li><a href="#!" class="nav-link"><i class="material-icons">dns</i>Terminology Registry</a></li>
     <li><a href="#!" class="nav-link"><i class="material-icons">assignment</i>Consent</a></li>
     <li><a href="#!" class="nav-link"><i class="material-icons">account_balance</i>CORP</a></li>
@@ -163,6 +160,7 @@ Khoa
                 <h5 class="title">Domain Selection</h5>
                 <hr>
             </div>
+            <br>
             <div class="col s4 input-field">
                 <select name="domain" id="domain" onchange="loadForm()">
                     <option value="" selected></option>
@@ -301,6 +299,72 @@ Khoa
 
 <div class="row form-row z-depth-1-half hiddendi" style="padding: 0px; overflow-x: auto" id="res-tab">
     <!--TABLE DYNAMICALLY LOADED HERE-->
+    <table>
+        <thead>
+            <tr>
+                <th>PersonID</th>
+                <th>LastName</th>
+                <th>FirstName</th>
+                <th>Address</th>
+                <th>City</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <c:foreach var = "PERSONS" items = "${USERS}">
+                <td>${USERS.personID}</td>
+                <td>${USERS.lastName}</td>
+                <td>${USERS.firstName}</td>
+                <td>${USERS.address}</td>
+                <td>${USERS.city}</td>
+            </c:foreach>
+        </tr>
+
+
+        <tr>
+            <c:foreach var = "PERSONS" items = "${USERS}">
+                <td><a href="#"> 00001</a></td>
+                <td>Le</td>
+                <td>Khoa</td>
+                <td>Some Address</td>
+                <td>Some city</td>
+            </c:foreach>
+        </tr>
+
+        <tr>
+            <c:foreach var = "PERSONS" items = "${USERS}">
+                <td><a href="#"> 00002</a></td>
+                <td>Doe</td>
+                <td>John</td>
+                <td>Some Address</td>
+                <td>Some city</td>
+            </c:foreach>
+        </tr>
+
+
+        <tr>
+            <c:foreach var = "PERSONS" items = "${USERS}">
+                <td><a href="#"> 00003</a></td>
+                <td>Mae</td>
+                <td>Sally</td>
+                <td>Some Address</td>
+                <td>Some city</td>
+            </c:foreach>
+        </tr>
+
+        <tr>
+            <c:foreach var = "PERSONS" items = "${USERS}">
+                <td><a href="#"> 00003</a></td>
+                <td>Thatcher</td>
+                <td>Margret</td>
+                <td>Some Address</td>
+                <td>Some city</td>
+            </c:foreach>
+        </tr>
+
+
+        </tbody>
+    </table>
 </div>
 
 <br>
@@ -556,7 +620,22 @@ Khoa
 </div>
 
 <div id="details-footer">
-
+    <div class="nav-wrapper">
+        <a href="#" data-activates="side-nav-bar" class="button-collapse">
+            <i class="material-icons">menu</i>
+        </a>
+        <div class="brand-logo left hide-on-small-only">
+            <img src="../static/images/ehealth-logo.png">
+        </div>
+        <ul id="nav-mobile" class="right">
+            <li>
+                <a href="#" class="dropdown-button" data-activates="user-actions">
+                    <i class="material-icons left">account_box</i>
+                    User Lastname
+                </a>
+            </li>
+        </ul>
+    </div>
 </div>
 
 <script src="../static/js/mdl-material.js"></script>

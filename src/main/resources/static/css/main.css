@@ -11,6 +11,7 @@ body{
     font-family: 'Monsterrat', sans-serif;
     font-size: 30px;
     font-weight: bold;
+    text-align: center;
 }
 
 #loading-screen{
@@ -218,6 +219,11 @@ span.thumb.active{
 #details-footer{
     margin-top: 100px;
 }
+
+#app{
+    padding-left: 10px;
+}
+
 .action-modal{
     width: 30%;
     background: steelblue;
@@ -346,4 +352,43 @@ span.thumb.active{
 
 .newline{
     float:left;
+}
+
+.app-row{
+    float: left;
+    margin: 5%;
+    background: white;
+    padding: 12px;
+    border-bottom: 8px solid steelblue;
+}
+.app-row .counter{
+    font-size: 2rem;
+    margin-top: -50px;
+    background-color: steelblue;
+    cursor: default;
+}
+.app-row .title{
+    color: gray;
+    font-weight: bold;
+    margin-top: -10px;
+}
+.app-row hr{
+    height: 3px;
+    border: none;
+    background-color: lightseagreen;
+}
+.app-row-action .btn[type]{
+    width: 25%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.app-container{
+    padding-left: 15%;
+}
+
+.table-query-header{
+    font-size: 20px;
+    text-align: center;
+    background-color: #00b0ff;
 }
