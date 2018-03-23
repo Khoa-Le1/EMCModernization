@@ -3,10 +3,8 @@ package ca.ehealthsask.emc.demo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.stereotype.Component;
 
-import ca.ehealthsask.emc.demo.Entity.User;
+import ca.ehealthsask.emc.demo.models.User;
 import ca.ehealthsask.emc.demo.Repository.UserRepository;
 
 

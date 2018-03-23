@@ -28,14 +28,14 @@ public class HomeController {
 
 
 
-    @GetMapping("/remediation/remediation_queue.html")
+    @GetMapping("/remediation/messageInquiry")
     public String remediationQueue(Model model,
                        @RequestParam(value = "name", required = false,
                                defaultValue = "Guest") String name) {
 
         model.addAttribute("name", name);
         model.addAttribute("title", appName);
-        return "remediation/remediation_queue";
+        return "remediation/message_inquiry";
     }
 
     /**Testing

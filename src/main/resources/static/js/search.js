@@ -15,7 +15,7 @@ function fetchSearchRecords(form){
 
         try {
             //use proper ajax functions instead of .load()
-            $("#res-tab").load("table.html", function (responseText, textStatus, req) {
+            $("#res-tab").load("/messages", function (responseText, textStatus, req) {
                 if(textStatus == "error"){
                     Materialize.toast("<i class='material-icons left'>close</i>&nbsp;Oops! An error occurred",2000);
                 }

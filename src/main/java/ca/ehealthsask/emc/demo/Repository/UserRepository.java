@@ -2,7 +2,7 @@ package ca.ehealthsask.emc.demo.Repository;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import ca.ehealthsask.emc.demo.Entity.User;
+import ca.ehealthsask.emc.demo.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 @Repository

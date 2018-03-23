@@ -29,6 +29,9 @@
 		<thymeleaf.version>3.0.3.RELEASE</thymeleaf.version>
 		<thymeleaf-layout-dialect.version>2.2.1</thymeleaf-layout-dialect.version>
 		<java.version>1.8</java.version>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<speedment.enterprise.version>1.1.17</speedment.enterprise.version>
 	</properties>
 
 	<dependencies>
@@ -71,7 +74,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-jpamodelgen</artifactId>
+			<artifactId>hibernate-java8</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -89,6 +92,32 @@
 			<artifactId>thymeleaf-layout-dialect</artifactId>
 			<version>2.2.2</version>
 		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.speedment.enterprise.connectors</groupId>
+			<artifactId>oracle-connector</artifactId>
+			<version>${speedment.enterprise.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.speedment.enterprise</groupId>
+			<artifactId>virtualcolumn-runtime</artifactId>
+			<version>${speedment.enterprise.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.speedment.enterprise</groupId>
+			<artifactId>datastore-runtime</artifactId>
+			<version>${speedment.enterprise.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.speedment.enterprise</groupId>
+			<artifactId>runtime</artifactId>
+			<version>${speedment.enterprise.version}</version>
+			<type>pom</type>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -98,33 +127,50 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 			<plugin>
-				<groupId>org.bsc.maven</groupId>
-				<artifactId>maven-processor-plugin</artifactId>
-				<version>2.2.4</version>
-				<executions>
-					<execution>
-						<id>process</id>
-						<goals>
-							<goal>process</goal>
-						</goals>
-						<phase>generate-sources</phase>
-						<configuration>
-							<processors>
-								<processor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</processor>
-							</processors>
-						</configuration>
-					</execution>
-				</executions>
+				<groupId>com.speedment.enterprise</groupId>
+				<artifactId>speedment-enterprise-maven-plugin</artifactId>
+				<version>${speedment.enterprise.version}</version>
+
+				<configuration>
+					<components>
+						<component>com.speedment.enterprise.connectors.oracle.OracleBundle</component>
+						<component>com.speedment.enterprise.virtualcolumn.tool.VirtualColumnToolBundle</component>
+						<component>com.speedment.enterprise.datastore.tool.DataStoreToolBundle</component>
+					</components>
+					<parameters>
+						<parameter>
+							<name>licenseKey</name>
+							<value>5j2tr5EybhxEy0TpZGF0YXN0b3JlLGRiMixtc3NxbCxvcmFjbGUsdmlydHVhbC1jb2x1bW5zO5/rJnNJYmk08oHOJLs/ocbhBEQJICpLa2bHBfKJnDIV5ryUVD8slbFRfziVwISYoILWCxS7khnm3lMNsYLkwYPlqr0mGYlRvS/KtDwj24oCKtRuP/Fk4NRUfLtraN+BgI+n8BdyTMOU/Ba26QXT5rBmk5690S9aTrRNenMZGWJ6</value>
+						</parameter>
+					</parameters>
+				</configuration>
+
 				<dependencies>
 					<dependency>
-						<groupId>org.hibernate</groupId>
-						<artifactId>hibernate-jpamodelgen</artifactId>
-						<version>4.3.8.Final</version>
+						<groupId>com.oracle</groupId>
+						<artifactId>ojdbc7</artifactId>
+						<version>12.1.0.1</version>
+						<scope>runtime</scope>
 					</dependency>
 				</dependencies>
 			</plugin>
 		</plugins>
 	</build>
 
+	<repositories>
+		<repository>
+			<id>speedment-enterprise</id>
+			<name>Speedment Enterprise Repositories</name>
+			<url>https://repo.speedment.com/nexus/content/repositories/releases/</url>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>speedment-enterprise</id>
+			<name>Speedment Enterprise Repositories</name>
+			<url>https://repo.speedment.com/nexus/content/repositories/releases/</url>
+		</pluginRepository>
+	</pluginRepositories>
 
 </project>
