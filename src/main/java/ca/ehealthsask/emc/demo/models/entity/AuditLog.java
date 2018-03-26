@@ -3,7 +3,11 @@ package ca.ehealthsask.emc.demo.models.entity;
 
 //import ca.ehealthsask.emc.demo.utils.datasources.event.AuditLogIndex;
 //import ca.ehealthsask.emc.demo.utils.datasources.event.AuditLogUser;
+import ca.ehealthsask.emc.demo.models.model.MessageWorkflow;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,8 +16,31 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "AUDIT_LOG", schema = "EVENT")
+@NamedNativeQuery(name="findWorkflowsByMessageCorrelationUuid", query = "SELECT" +
+        "    al.event_ts, " +
+        "    emc.business_name, " +
+//        "    case emc.event_major_cde WHEN '1206' THEN re.error_description_txt  " +
+//        "        else null " +
+//        "    end, " +
+        "    emc.event_major_cde,  " +
+        "    emc.event_minor_cde, " +
+//        "    rm.hial_message_id " +
+        "     " +
+        "from  " +
+        "    AUDIT_LOG al " +
+        "join  " +
+        "    hial_message hm ON hm.message_correlation_uuid = al.message_correlation_uuid " +
+        "join  " +
+        "    event_minor_code emc ON emc.event_minor_cde = al.event_minor_cde " +
+        "    and emc.event_major_cde = al.event_major_cde " +
+        "join " +
+        "    remediation_message rm ON hm.hial_message_id = rm.hial_message_id left outer " +
+        "join remediation_error re ON rm.remediation_message_id = re.remediation_message_id ")
 public class AuditLog implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -25,7 +52,7 @@ public class AuditLog implements Serializable {
     @Column(name = "AUDIT_LOG_ID")//
     private Long auditLogId;
     @Column(name = "EVENT_TS")//
-    private String eventTs;
+    private LocalDateTime eventTs;
     @Basic(optional = false)
     @Column(name = "MESSAGE_TYPE_TXT")//
     private String messageType;
@@ -41,120 +68,32 @@ public class AuditLog implements Serializable {
 //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "auditLog")
 //    private Collection<AuditLogIndex> auditLogIndexes = new ArrayList<AuditLogIndex>();
     @Column(name = "EVENT_MINOR_CDE")//
-    private String eventMinorCode;
+    private String eventMinorCde;
     @Column(name = "EVENT_MAJOR_CDE")//
-    private String eventMajorCode;
+    private String eventMajorCde;
     @Column(name = "MESSAGE_CORRELATION_UUID")//
     private String messageCorrelationUUID;
 //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "auditLog")
 //    private Collection<AuditLogUser> auditLogUsers = new ArrayList<AuditLogUser>();
-//    @ManyToMany
-//    @JoinTable(name = "HIAL_MESSAGE", joinColumns = {
-//            @JoinColumn(name = "MESSAGE_CORRELATION_UUID", referencedColumnName = "MESSAGE_CORRELATION_UUID")
-//    }, inverseJoinColumns = {
-//            @JoinColumn(name = "MESSAGE_CORRELATION_UUID", referencedColumnName = "MESSAGE_CORRELATION_UUID")
-//    })
-//    private Collection<HialMessage> hialMessages;
-//    @OneToOne
-//    @JoinColumns({
-//            @JoinColumn(name = "EVENT_MINOR_CDE", referencedColumnName = "EVENT_MINOR_CDE", insertable = false, updatable = false),
-//            @JoinColumn(name = "EVENT_MAJOR_CDE", referencedColumnName = "EVENT_MAJOR_CDE", insertable = false, updatable = false)
-//    })
-//    private EventMinorCode eventMinorCodeReference;
+    @ManyToMany
+    @JoinTable(name = "HIAL_MESSAGE",
+            joinColumns = {@JoinColumn(name = "MESSAGE_CORRELATION_UUID", referencedColumnName = "MESSAGE_CORRELATION_UUID", insertable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "MESSAGE_CORRELATION_UUID", referencedColumnName = "MESSAGE_CORRELATION_UUID", insertable = false, updatable = false)}
+    )
+    private Collection<HialMessage> hialMessages;
+    @OneToOne
+    @JoinColumns({
+            @JoinColumn(name = "EVENT_MINOR_CDE",
+                    referencedColumnName = "EVENT_MINOR_CDE",
+                    insertable = false,
+                    updatable = false),
+            @JoinColumn(name = "EVENT_MAJOR_CDE",
+                    referencedColumnName = "EVENT_MAJOR_CDE",
+                    insertable = false,
+                    updatable = false)
+    })
+    private EventMinorCode eventMinorCodeReference;
     @Column(name = "ALTERNATE_FLOW_CONTROL_TXT")
     private String alternateFlow;
 
-    public AuditLog(){}
-
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
-
-    public Long getAuditLogId() {
-        return auditLogId;
-    }
-
-    public void setAuditLogId(Long auditLogId) {
-        this.auditLogId = auditLogId;
-    }
-
-    public String getEventTs() {
-        return eventTs;
-    }
-
-    public void setEventTs(String eventTs) {
-        this.eventTs = eventTs;
-    }
-
-    public String getMessageType() {
-        return messageType;
-    }
-
-    public void setMessageType(String messageType) {
-        this.messageType = messageType;
-    }
-
-    public String getDetail() {
-        return detail;
-    }
-
-    public void setDetail(String detail) {
-        this.detail = detail;
-    }
-
-    public String getMessageId() {
-        return messageId;
-    }
-
-    public void setMessageId(String messageId) {
-        this.messageId = messageId;
-    }
-
-    public String getSenderOid() {
-        return senderOid;
-    }
-
-    public void setSenderOid(String senderOid) {
-        this.senderOid = senderOid;
-    }
-
-    public String getReceiverOid() {
-        return receiverOid;
-    }
-
-    public void setReceiverOid(String receiverOid) {
-        this.receiverOid = receiverOid;
-    }
-
-    public String getEventMinorCode() {
-        return eventMinorCode;
-    }
-
-    public void setEventMinorCode(String eventMinorCode) {
-        this.eventMinorCode = eventMinorCode;
-    }
-
-    public String getEventMajorCode() {
-        return eventMajorCode;
-    }
-
-    public void setEventMajorCode(String eventMajorCode) {
-        this.eventMajorCode = eventMajorCode;
-    }
-
-    public String getMessageCorrelationUUID() {
-        return messageCorrelationUUID;
-    }
-
-    public void setMessageCorrelationUUID(String messageCorrelationUUID) {
-        this.messageCorrelationUUID = messageCorrelationUUID;
-    }
-
-    public String getAlternateFlow() {
-        return alternateFlow;
-    }
-
-    public void setAlternateFlow(String alternateFlow) {
-        this.alternateFlow = alternateFlow;
-    }
 }

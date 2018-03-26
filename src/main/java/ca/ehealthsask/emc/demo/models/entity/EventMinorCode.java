@@ -44,12 +44,4 @@ public class EventMinorCode implements Serializable {
     public EventMinorCode(EventMinorCodePK eventMinorCodePK) {
         this.eventMinorCodePK = eventMinorCodePK;
     }
-//
-//    public EventMinorCode(EventMinorCodePK eventMinorCodePK, String descriptionTxt, Date recordCreatedTs, String recordCreatedUserid, long recordVersionNbr) {
-//        this.eventMinorCodePK = eventMinorCodePK;
-//        this.descriptionTxt = descriptionTxt;
-//        this.recordCreatedTs = recordCreatedTs;
-//        this.recordCreatedUserid = recordCreatedUserid;
-//        this.recordVersionNbr = recordVersionNbr;
-//    }
 }

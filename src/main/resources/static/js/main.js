@@ -42,7 +42,20 @@ $(document).ready(function() {
         close: 'Ok',
         max : new Date(),
         closeOnSelect: false // Close upon selecting a date,
-    })
+    });
+    $('.timepicker').pickatime({
+        default: 'now', // Set default time: 'now', '1:30AM', '16:30'
+        // now: 'Now',
+        fromnow: 0,       // set default time to * milliseconds from now (using with default = 'now')
+        twelvehour: true, // Use AM/PM or 24-hour format
+        donetext: 'OK', // text for done-button
+        cleartext: 'Clear', // text for clear-button
+        canceltext: 'Cancel', // Text for cancel-button
+        autoclose: false, // automatic close timepicker
+        ampmclickable: true, // make AM PM clickable
+        aftershow: function(){} //Function for after opening timepicker
+
+    });
     stickyHeader = document.getElementById("sticky-page-header");
     stickyPos = stickyHeader.offsetTop;
     window.onscroll = function() {
@@ -120,22 +133,43 @@ function assignTo() {
         $('#act-assign-to').modal('close');
     },1500);
 }
-function openMessageModal(msgid,row) {
+function openMessageModal(msgid,uuid,row) {
     $("#message-content-modal span[data-attribute=message-control-id]").html(msgid);
+    $("#message-content-modal span.msg-txt").html("Correlation Id ["+uuid+"]");
+    $("#message-content-modal").attr('correlation-id',uuid);
     //set all the other field values
     $("#view-msg-content textarea,#view-trns-msg textarea").val("");
     $("#view-msg-content .msg-content-action,#view-trns-msg .msg-content-action").show();
     $("#view-msg-content .err-text,#view-trns-msg .err-text").detach();
-    $("#message-content-modal").modal('open');
+    $("#message-content-modal .workflow-table tbody").detach();
+    showLoading();
+    $.get("/messages/"+uuid+"/workflow")
+        .done(function (data) {
+            $("#message-content-modal .workflow-table").append(data);
+            $("#message-content-modal").modal('open');
+        })
+        .fail(function () {
+            Materialize.toast("<i class='material-icons left'>close</i>&nbsp;An Error Occurred!",2000);
+        })
+        .always(function () {
+            hideLoading();
+        });
+
 }
-function showMessageContent(msgid,panelid,path){
+function showMessageContent(uuid,panelid){
     $(panelid+" .msg-content-action .progress").css({
         opacity : 1
     });
     $(panelid+" .msg-content-action .btn").addClass("disabled");
     setTimeout(function () {
-        $.get(path,function (data) {
-           $(panelid+" textarea").val(data);
+        $.get("/messages/"+uuid+"/lob",function (data) {
+           data.forEach(function (value, index) {
+              if(value["messageDiscriminatorCdid"]==="149"){
+                  $("#view-msg-content textarea").val(value["messageLob"]);
+              }else if(value["messageDiscriminatorCdid"]==="148"){
+                  $("#view-trns-msg textarea").val(value["messageLob"]);
+              }
+           });
            //  $(panelid+" textarea").trigger('autoresize');
         }).fail(function () {
             msgError("Failed to get message content",2000);

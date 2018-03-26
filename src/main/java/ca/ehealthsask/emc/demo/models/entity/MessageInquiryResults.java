@@ -1,6 +1,10 @@
 package ca.ehealthsask.emc.demo.models.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +13,8 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class MessageInquiryResults implements Serializable{
 
@@ -41,20 +47,4 @@ public class MessageInquiryResults implements Serializable{
     /*OTHER*/
     @Column(name = "HIAL_MESSAGE_ID")
     private String hialMessageId;
-
-
-    public MessageInquiryResults() {
-    }
-
-    public MessageInquiryResults(String indexValue, String messageControlId, String messageType, String senderOid, String description, String messageCorrelationUUID, LocalDateTime initialEventTs, LocalDateTime latestEventTs, String hialMessageId) {
-        this.indexValue = indexValue;
-        this.messageControlId = messageControlId;
-        this.messageType = messageType;
-        this.senderOid = senderOid;
-        this.description = description;
-        this.messageCorrelationUUID = messageCorrelationUUID;
-        this.initialEventTs = initialEventTs;
-        this.latestEventTs = latestEventTs;
-        this.hialMessageId = hialMessageId;
-    }
 }

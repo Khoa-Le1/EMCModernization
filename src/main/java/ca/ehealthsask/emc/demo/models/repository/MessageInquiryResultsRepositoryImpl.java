@@ -4,6 +4,7 @@ import ca.ehealthsask.emc.demo.models.entity.MessageInquiryResults;
 import ca.ehealthsask.emc.demo.models.model.MessageInquiryParameters;
 import ca.ehealthsask.emc.demo.services.NativeQueryBuilder;
 import lombok.Data;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -20,15 +21,15 @@ public class MessageInquiryResultsRepositoryImpl implements MessageInquiryResult
 
     //still todo
     @Override
-    public List<MessageInquiryResults> getJoin(MessageInquiryParameters params){
-        Query q = NativeQueryBuilder.buildMessageInquiryQuery(entityManager, params);
+    public List<MessageInquiryResults> getByParameters(MessageInquiryParameters params, Pageable pageable){
+        Query q = NativeQueryBuilder.buildMessageInquiryQuery(entityManager, params, pageable);
         return q.getResultList();
     }
 
     @Override
-    public List<MessageInquiryResults> getJoin(String msgControlId) {
+    public List<MessageInquiryResults> getByParameters(String msgControlId) {
         String dynamicParams = "hm.message_control_id_txt = ? ";
-        String query = String.format(NativeQueryBuilder.MESSAGE_INQUIRY_QUERY, dynamicParams);
+        String query = String.format(NativeQueryBuilder.MESSAGE_INQUIRY_QUERY_MV, dynamicParams);
         Query q = entityManager.createNativeQuery(query, MessageInquiryResults.class);
         q.setParameter(1, msgControlId);
         return q.getResultList();

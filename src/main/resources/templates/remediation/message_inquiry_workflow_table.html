@@ -1,0 +1,15 @@
+<tbody xmlns:th="http://www.thymeleaf.org"
+class="mdl-data-table mdl-js-data-table mdl-data-table--selectable"
+id="workflow-table">
+
+<tr th:each="row : ${messageInquiryWorkflow}" th:if="${row.getEventMajorCde()!='2103'}">
+
+    <td th:text="${#temporals.format(row.getEventTs(), 'dd-MMM-yyyy hh:mm:ssa')}"></td>
+    <td th:text="${row.getBusinessName()}"></td>
+    <td th:text="${row.getErrorDescription()}"></td>
+    <td th:text="${row.getEventMajorCde()}"></td>
+    <td th:text="${row.getEventMinorCde()}"></td>
+
+</tr>
+
+</tbody>

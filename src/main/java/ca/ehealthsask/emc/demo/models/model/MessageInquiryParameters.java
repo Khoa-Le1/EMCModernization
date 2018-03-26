@@ -16,20 +16,9 @@ import java.util.List;
 @Builder
 public class MessageInquiryParameters {
 
-    private LocalDateTime fromDate;
-    private LocalDateTime toDate;
     private String messageControlId;
     private String orderId;
-
-//    public String createConditions(){
-//        StringBuilder whereConditions = new StringBuilder();
-//        List<String> params = new ArrayList<>();
-//        if (messageControlId != null && !messageControlId.isEmpty()) {
-//            whereConditions.append("hm.message_control_id = ?");
-//        }
-//        if (fromDate != null){
-//
-//        }
-//        return whereConditions;
-//    }
+    private LocalDateTime fromDate;
+    private LocalDateTime toDate;
+    private String source;
 }
