@@ -32,9 +32,32 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<speedment.enterprise.version>1.1.17</speedment.enterprise.version>
+		<spring.jdbc.url>jdbc:oracle:thin:@r1q-v-1320.ehealthsask.ca:1523:EHRR1QA</spring.jdbc.url>
+		<spring.jdbc.user>HIALAPP</spring.jdbc.user>
+		<spring.jdbc.password>hialapp</spring.jdbc.password>
 	</properties>
 
 	<dependencies>
+		<!--SECURITY-->
+		<!--========-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.ldap</groupId>
+			<artifactId>spring-ldap-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-ldap</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.unboundid</groupId>
+			<artifactId>unboundid-ldapsdk</artifactId>
+		</dependency>
+		<!--========-->
+		<!--SECURITY-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
@@ -92,6 +115,13 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>3.7</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.jooq/jooq-codegen-maven -->
+		<dependency>
+			<groupId>org.jooq.trial</groupId>
+			<artifactId>jooq-codegen-maven</artifactId>
+			<version>3.10.6</version>
 		</dependency>
 
 		<dependency>
@@ -165,6 +195,69 @@
 						<scope>runtime</scope>
 					</dependency>
 				</dependencies>
+			</plugin>
+
+			<plugin>
+				<groupId>org.jooq.trial</groupId>
+				<artifactId>jooq-codegen-maven</artifactId>
+				<!--<executions>-->
+					<!--...-->
+				<!--</executions>-->
+				<dependencies>
+
+					<dependency>
+						<groupId>com.oracle</groupId>
+						<artifactId>ojdbc7</artifactId>
+						<version>12.1.0.1</version>
+					</dependency>
+					<!--<dependency>-->
+						<!--<groupId>com.h2database</groupId>-->
+						<!--<artifactId>h2</artifactId>-->
+						<!--<version>${h2.version}</version>-->
+					<!--</dependency>-->
+				</dependencies>
+				<configuration>
+					<jdbc>
+						<driver>oracle.jdbc.OracleDriver</driver>
+						<url>${spring.jdbc.url}</url>
+						<user>${spring.jdbc.user}</user>
+						<password>${spring.jdbc.password}</password>
+					</jdbc>
+					<generator>
+						<database>
+							<!--<name>org.jooq.util.oracle.OracleDatabase</name>-->
+							<includes>
+								HIAL_MESSAGE
+								| REMEDIATION_MESSAGE
+								| REMEDIATION_ERROR
+								| REMEDIATION_ERROR_TYPE
+								| REMEDIATION_NOTE
+								| REFERENCE_CODE
+								| MV_HIAL_MSG_AUDIT_LOG
+								| REFERENCE_CODE
+								| REFERENCE_CODE_SET
+								| REFERENCE_CODE_SUBSET
+								| EVENT_MAJOR_CODE
+								| EVENT_MINOR_CODE
+								| AUDIT_LOG
+								| DOMAIN_MESSAGE_TYPE_XREF
+							</includes>
+							<!--<schemata>-->
+								<!--<inputSchema>HIALAPP</inputSchema>-->
+								<!--<inputSchema>EMC</inputSchema>-->
+								<!--<inputSchema>HIAL</inputSchema>-->
+								<!--<inputSchema>CORP</inputSchema>-->
+								<!--<inputSchema>EVENT</inputSchema>-->
+							<!--</schemata>-->
+						</database>
+
+						<target>
+							<packageName>jooq.generated</packageName>
+							<directory>/src/main/java</directory>
+						</target>
+
+					</generator>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

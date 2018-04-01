@@ -2,12 +2,11 @@ package ca.ehealthsask.emc.demo.controllers;
 
 import ca.ehealthsask.emc.demo.models.entity.HialMessage;
 import ca.ehealthsask.emc.demo.models.entity.MessageInquiryResults;
+import ca.ehealthsask.emc.demo.models.entity.ReferenceCode;
 import ca.ehealthsask.emc.demo.models.model.MessageLob;
 import ca.ehealthsask.emc.demo.models.model.MessageInquiryParameters;
 import ca.ehealthsask.emc.demo.models.model.MessageWorkflow;
-import ca.ehealthsask.emc.demo.models.repository.AuditLogRepository;
-import ca.ehealthsask.emc.demo.models.repository.HialMessageRepository;
-import ca.ehealthsask.emc.demo.models.repository.MessageInquiryResultsRepositoryImpl;
+import ca.ehealthsask.emc.demo.models.repository.*;
 import ca.ehealthsask.emc.demo.utils.EMCDateUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -30,28 +29,31 @@ public class MessageInquiryController {
 
     @Autowired
     MessageInquiryResultsRepositoryImpl auditLogRepositoryImpl;
-
     @Autowired
     HialMessageRepository hialMessageRepository;
     @Autowired
     AuditLogRepository auditLogRepository;
+    @Autowired
+    ReferenceCodeRepository referenceCodeRepository;
+    @Autowired
+    DomainMessageTypeXrefRepository domainMessageTypeXrefRepository;
 
     @GetMapping("/messages")
     public String getResults(Model model,
                              Pageable pageable,
                              HttpServletResponse response,
+                             @RequestParam (value = "domain",required = false) String domain,
                              @RequestParam (value = "message-control-id",required = false) String msgControlId,
                              @RequestParam (value = "order-number",required = false) String orderNumber,
                              @RequestParam (value = "from-date",required = false) String fromDate,
                              @RequestParam (value = "from-time",required = false) String fromTime,
                              @RequestParam (value = "to-date",required = false) String toDate,
-                             @RequestParam (value = "to-time",required = false) String toTime
+                             @RequestParam (value = "to-time",required = false) String toTime,
+                             @RequestParam (value = "source",required = false) String source
                              ) throws IOException {
         System.out.println(new ObjectMapper().writeValueAsString(pageable));
         System.out.println(auditLogRepositoryImpl.toString());
-        //d4ade223-9e9b-475d-b781-714c38c133c
-        //        List<MessageInquiryResults> results = auditLogRepositoryImpl.getAuditLogs("d9a25327-a43d-401c-914f-02f4b7832169");
-//        List<MessageInquiryResults> results = auditLogRepositoryImpl.getByParameters("41799469");
+
 
         //check to see if request parameters are blank
         //if they're all blank, send an error
@@ -63,23 +65,29 @@ public class MessageInquiryController {
             throw new IllegalArgumentException("ERR002");
         }
 
-        //parsing the localdatetime objects from the time and date fields supplied and create a new messageInquiryParameter object
+        //parsing the localdatetime objects from the time and date fields supplied and build a new
+        // MessageInquiryParameter object from the request parameters
         LocalDateTime fromDateTime = EMCDateUtils.parseFromUserInput(fromDate, fromTime);
         LocalDateTime toDateTime = EMCDateUtils.parseFromUserInput(toDate, toTime);
         MessageInquiryParameters params
                 = MessageInquiryParameters
                 .builder()
+                .domain(domain)
                 .messageControlId(msgControlId)
                 .orderId(orderNumber)
                 .fromDate(fromDateTime)
                 .toDate(toDateTime)
+                .source(source)
                 .build();
 
         //pass messageInquiryParameters into search function for message inquiry result list
         List<MessageInquiryResults> results = auditLogRepositoryImpl.getByParameters(params, pageable);
         log.info("Starting results fetching");
         log.info(results.toString());
+        //add results to model
         model.addAttribute("messageInquiryResults", results);
+        //add domain to model
+        model.addAttribute("indexFieldName", indexFieldName(domain));
         response.setHeader("page", pageable.getPageNumber() + "");
         return "remediation/message_inquiry_results";
     }
@@ -109,4 +117,25 @@ public class MessageInquiryController {
         return "remediation/message_inquiry_workflow_table";
     }
 
+    /**
+     * For testing purposes
+     * @param referenceCodeDomain
+     * @param domainType
+     * @return
+     */
+    @GetMapping("/domain/{referenceCodeDomain}/{domainType}")
+    @ResponseBody
+    public ReferenceCode getReferenceCode(@PathVariable("referenceCodeDomain") String referenceCodeDomain,
+                                          @PathVariable("domainType") String domainType) {
+        ReferenceCode codes = referenceCodeRepository.findFirstByReferenceCodeSet_ReferenceCodeSetNameEqualsAndReferenceCodeTxtEquals(referenceCodeDomain, domainType);
+        return codes;
+    }
+
+    private String indexFieldName(String domain) {
+        switch (domain) {
+            case "LAB": return "Order Number";
+            case "CE": return "Visit Number";
+            default: return "Document ID";
+        }
+    }
 }

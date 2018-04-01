@@ -7,20 +7,22 @@
 <body>
 <nav th:fragment="nav" id="page-header">
     <div class="nav-wrapper">
-        <a href="#" data-activates="side-nav-bar" class="button-collapse">
-            <i class="material-icons">menu</i>
-        </a>
-        <div class="brand-logo left hide-on-small-only">
-            <img th:src="@{images/ehealth-logo.png}" src="../../static/dummy/images/ehealth-logo.png">
+        <div id="banner">
+            <a href="#" data-activates="side-nav-bar" class="button-collapse">
+                <i class="material-icons">menu</i>
+            </a>
+            <div class="brand-logo left hide-on-small-only">
+                <img src="/images/ehealth-logo.png">
+            </div>
+            <h5 class="brand-logo center" id="page-title">
+                REMEDIATION QUEUE
+            </h5>
         </div>
-        <h5 th:text="${title}" class="brand-logo center" id="page-title">
-            EMC PLACEHOLDER PAGE TITLE
-        </h5>
         <ul id="nav-mobile" class="right">
             <li>
                 <a href="#" class="dropdown-button" data-activates="user-actions">
                     <i class="material-icons left">account_box</i>
-                    User Lastname
+                    <span th:text="${@login.commonName}"></span>
                 </a>
             </li>
         </ul>

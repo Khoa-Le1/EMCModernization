@@ -8,17 +8,18 @@
 <!--USER ACTIONS DROPDOWN-->
 
 <ul th:fragment="user-actions" id='user-actions' class='dropdown-content'>
+
     <li class="center user-info">
         <i class="material-icons">account_circle</i>
         <br>
         Logged in as
         <br>
-        <span>username</span>
+        <span th:text="${@login.username}"></span>
         <br>
     </li>
     <li class="divider"></li>
     <li class="action">
-        <button class="btn waves-effect waves-light">Logout</button>
+        <button class="btn waves-effect waves-light" onclick="location.href='/login?logout'">Logout</button>
     </li>
 </ul>
 </body>

@@ -14,8 +14,10 @@ $(document).ready(function () {
 
 function fetchSearchRecords(form, page){
     var data = form.serialize();
+    msgInquiryURL.searchParams.set("msg-search-form",JSON.stringify(form.serializeArray()));
     if (page) {
         data += "&page=" + page;
+        msgInquiryURL.searchParams.set("page",page);
     }
     var path = form.attr('action');
     var jsDataTable
@@ -29,8 +31,6 @@ function fetchSearchRecords(form, page){
     //get the page number, size per page and other query variables
 
     showLoading();
-    setTimeout(function () {
-
         try {
             //use proper ajax functions instead of .load()
             var resp;
@@ -97,6 +97,10 @@ function fetchSearchRecords(form, page){
                 }
                 $("#page-current a").text(pageHeader+1);
                 $("#page-forward").attr("page-value",(pageHeader+1)+"");
+
+                if(msgInquiryURL.hasOwnProperty("afterSearch")){
+                    msgInquiryURL.afterSearch();
+                }
             });
         }catch (err){
             console.log("[ERROR]"+err);
@@ -104,7 +108,6 @@ function fetchSearchRecords(form, page){
             hideLoading();
         }
 
-    },2000);
 }
 
 function clearPage(){

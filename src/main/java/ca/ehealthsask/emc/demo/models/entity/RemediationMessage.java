@@ -1,5 +1,6 @@
 package ca.ehealthsask.emc.demo.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,6 +9,7 @@ import javax.persistence.*;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Collection;
 
 @Data
 @NoArgsConstructor
@@ -47,7 +49,14 @@ public class RemediationMessage implements Serializable{
     @Column(name = "REMEDIATION_PRIORITY_CDID")
     private Long remediationPriorityCdid;
 
+    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "remediationMessage")
+    private Collection<RemediationError> remediationErrors;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private HialMessage hialMessage;
+
+    //for materialized view
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private MvHialMsgAuditLog mvHialMsgAuditLog;
 }

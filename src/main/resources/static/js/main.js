@@ -6,6 +6,7 @@ function hideLoading(){
 }
 var stickyHeader;
 var stickyPos;
+var msgInquiryURL = new URL(location.href);
 $(document).ready(function() {
 
     $("#loading-screen").modal({
@@ -92,6 +93,9 @@ $(document).ready(function() {
             console.log(event);
         }
     });
+
+    //Initiate Auto Search
+    autoSearch();
 });
 
 function toggleToolbar(toolbar,button){
@@ -147,6 +151,10 @@ function openMessageModal(msgid,uuid,row) {
         .done(function (data) {
             $("#message-content-modal .workflow-table").append(data);
             $("#message-content-modal").modal('open');
+            msgInquiryURL.searchParams.set("msg-uuid",uuid);
+            if(msgInquiryURL.hasOwnProperty("afterModal")){
+                msgInquiryURL.afterModal();
+            }
         })
         .fail(function () {
             Materialize.toast("<i class='material-icons left'>close</i>&nbsp;An Error Occurred!",2000);
@@ -170,6 +178,7 @@ function showMessageContent(uuid,panelid){
                   $("#view-trns-msg textarea").val(value["messageLob"]);
               }
            });
+           msgInquiryURL.searchParams.set("show-lob",true);
            //  $(panelid+" textarea").trigger('autoresize');
         }).fail(function () {
             msgError("Failed to get message content",2000);
@@ -199,83 +208,96 @@ function loadForm(){
     $(".se-pre-con").fadeOut("slow",switchForm());
 }
 
-function switchForm(){
-    //Changes form depending on domain chosen
-    if ($("#domain").val() == "CDM"){
-        $(".ToggleVisibility").attr("class", "revealSecondForm");
-        $("#formType").html("<h5 class=\"title\">Chronic Disease Management Message Inquiry</h5>");
-        $("#source").hide();
-        $("#element1").html("  <div class=\"col s7 input-field\" id=\"docSetID\">\n" +
-            "                    <label>Document Set ID</label>\n" +
-            "                    <input type=\"text\" name=\"document-setID\" url-updater>\n" +
-            "                </div>");
-    }
-    else if($("#domain").val() == "CD"){
-        $(".ToggleVisibility").attr("class", "revealSecondForm");
-        $("#formType").html("<h5 class=\"title\">Clinical Document Message Inquiry</h5>");
-        $("#source").hide();
-        $("#element1").html("  <div class=\"col s7 input-field\" id=\"docID\">\n" +
-            "                    <label>Document ID</label>\n" +
-            "                    <input type=\"text\" name=\"doc-ID\" url-updater>\n" +
-            "                </div>");
-    }
-    else if($("#domain").val() == "CE"){
-        $(".ToggleVisibility").attr("class", "revealSecondForm");
-        $("#formType").html("<h5 class=\"title\">Clinical Encounter Message Inquiry</h5>");
-        $("#source").hide();
-        $("#element1").html("  <div class=\"col s7 input-field\" id=\"visitNumber\">\n" +
-            "                    <label>Visit Number</label>\n" +
-            "                    <input type=\"text\" name=\"visit-number\" url-updater>\n" +
-            "                </div>");
-    }
-    else if($("#domain").val() == "LAB"){
-        $(".ToggleVisibility").attr("class", "revealSecondForm");
-        $("#formType").html("<h5 class=\"title\">Lab Message Inquiry</h5>");
-        $("#source").hide();
-        $("#element1").html("  <div class=\"col s7 input-field\" id=\"orderNumber\">\n" +
-            "                    <label>Order Number</label>\n" +
-            "                    <input type=\"text\" name=\"order-number\" url-updater>\n" +
-            "                </div>");
-    }
-    else if($("#domain").val() == "MI"){
-        $(".ToggleVisibility").attr("class", "revealSecondForm");
-        $("#formType").html("<h5 class=\"title\">Medical Imaging Reports Message Inquiry</h5>");
-        $("#source").show();
-        $("#element1").html("  <div class=\"col s7 input-field\" id=\"docID\">\n" +
-            "                    <label>Document ID</label>\n" +
-            "                    <input type=\"text\" name=\"doc-ID\" url-updater>\n" +
-            "                </div>");
-
-    }else{
-        $("#source").hide();
-        $(".se-pre-con").show();
-        $("#formType").html("<h5 class=\"title\">Please Select a Domain</h5>");
-        $(".hiddenSecondForm").attr("class", "ToggleVisibility");
-        $(".revealSecondForm").attr("class", "ToggleVisibility");
+// function switchForm(){
+//     //Changes form depending on domain chosen
+//     if ($("#domain").val() == "CDM"){
+//         $(".ToggleVisibility").attr("class", "revealSecondForm");
+//         $("#formType").html("<h5 class=\"title\">Chronic Disease Management Message Inquiry</h5>");
+//         $("#source").hide();
+//         $("#element1").html("  <div class=\"col s7 input-field\" id=\"docSetID\">\n" +
+//             "                    <label>Document Set ID</label>\n" +
+//             "                    <input type=\"text\" name=\"document-setID\" url-updater>\n" +
+//             "                </div>");
+//     }
+//     else if($("#domain").val() == "CD"){
+//         $(".ToggleVisibility").attr("class", "revealSecondForm");
+//         $("#formType").html("<h5 class=\"title\">Clinical Document Message Inquiry</h5>");
+//         $("#source").hide();
+//         $("#element1").html("  <div class=\"col s7 input-field\" id=\"docID\">\n" +
+//             "                    <label>Document ID</label>\n" +
+//             "                    <input type=\"text\" name=\"doc-ID\" url-updater>\n" +
+//             "                </div>");
+//     }
+//     else if($("#domain").val() == "CE"){
+//         $(".ToggleVisibility").attr("class", "revealSecondForm");
+//         $("#formType").html("<h5 class=\"title\">Clinical Encounter Message Inquiry</h5>");
+//         $("#source").hide();
+//         $("#element1").html("  <div class=\"col s7 input-field\" id=\"visitNumber\">\n" +
+//             "                    <label>Visit Number</label>\n" +
+//             "                    <input type=\"text\" name=\"visit-number\" url-updater>\n" +
+//             "                </div>");
+//     }
+//     else if($("#domain").val() == "LAB"){
+//         $(".ToggleVisibility").attr("class", "revealSecondForm");
+//         $("#formType").html("<h5 class=\"title\">Lab Message Inquiry</h5>");
+//         $("#source").hide();
+//         $("#element1").html("  <div class=\"col s7 input-field\" id=\"orderNumber\">\n" +
+//             "                    <label>Order Number</label>\n" +
+//             "                    <input type=\"text\" name=\"order-number\" url-updater>\n" +
+//             "                </div>");
+//     }
+//     else if($("#domain").val() == "MI"){
+//         $(".ToggleVisibility").attr("class", "revealSecondForm");
+//         $("#formType").html("<h5 class=\"title\">Medical Imaging Reports Message Inquiry</h5>");
+//         $("#source").show();
+//         $("#element1").html("  <div class=\"col s7 input-field\" id=\"docID\">\n" +
+//             "                    <label>Document ID</label>\n" +
+//             "                    <input type=\"text\" name=\"doc-ID\" url-updater>\n" +
+//             "                </div>");
+//
+//     }else{
+//         $("#source").hide();
+//         $(".se-pre-con").show();
+//         $("#formType").html("<h5 class=\"title\">Please Select a Domain</h5>");
+//         $(".hiddenSecondForm").attr("class", "ToggleVisibility");
+//         $(".revealSecondForm").attr("class", "ToggleVisibility");
+//     }
+// }
+// --------------------
+//     AUTO SEARCH
+// --------------------
+function autoSearch() {
+    var currURL = new URL(location.href);
+    if(currURL.searchParams.get("msg-search-form")){
+        var msgForm = JSON.parse(currURL.searchParams.get("msg-search-form"));
+        msgForm.forEach(function (value) {
+            if(value["name"]=="domain")
+                changeDomain(value["value"]);
+            $("#msg-search-form input[name="+value["name"]+"] " +
+               ", #msg-search-form select[name="+value["name"]+"]")
+               .val(value["value"]);
+            Materialize.updateTextFields();
+            $("#msg-search-form select[name="+value["name"]+"]").material_select();
+        });
+        $("#msg-form-search-btn").click();
+        //load modal
+        if(msgInquiryURL.searchParams.has("msg-uuid")){
+            msgInquiryURL["afterSearch"] = function () {
+                $("#result-table td[message-correlation-uuid="
+                    +msgInquiryURL.searchParams.get("msg-uuid")+"]").click();
+            };
+        }
+        //load content
+        if(msgInquiryURL.searchParams.has("show-lob")){
+            msgInquiryURL["afterModal"] = function () {
+                $("#view-msg-content button").click();
+            }
+        }
     }
 }
-//EXTRA FUNCTIONALITY
-// var pageURL = new URL(location.href);
-// function addURLSearchParam(param,value) {
-//     if(!pageURL.searchParams.has("autosearch"))
-//         pageURL.searchParams.set("autosearch","true");
-//     pageURL.searchParams.set(param,value);
-//     history.pushState({},null,pageURL.pathname+pageURL.search);
-// }
-// function clearURLSearchParams(){
-//     for(var param of pageURL.searchParams.keys()){
-//         pageURL.searchParams.delete(param);
-//     }
-//     history.pushState({},null,pageURL.pathname+pageURL.search);
-// }
-// $(document).ready(function () {
-//    $("*[url-updater]").change(function (event) {
-//        var param = $(this).attr('name');
-//        var value = $(this).val().toString();
-//        if(param && value)
-//            addURLSearchParam(param,value);
-//    }) ;
-//     $(".form-row button[type=reset]").click(function (event) {
-//        clearURLSearchParams();
-//     });
-// });
+function showSavedURL() {
+    swal({
+        html:"<hr><small style='word-break:break-all'>"+msgInquiryURL.toString()+"</small>",
+        title: "Search URL"
+    })
+}

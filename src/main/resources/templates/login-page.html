@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Login - EMC </title>
+        <link rel="stylesheet" type="text/css" href="css/materialize.min.css"/>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/css/main.css"/>
+        <script src="/js/jquery-3.2.1.min.js"></script>
+        <script src="/js/materialize.min.js"></script>
+        <style>
+            .center{
+                text-align: center;
+            }
+
+            /*--------LOGIN----------*/
+            #login-container,#error-container{
+                height: 550px;
+            }
+            #login-form,#error-container .row{
+                width: 50%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            #error-container{
+                width: 100%;
+            }
+            #error-container .row{
+                width: 65%;
+            }
+            #login-form hr,#error-container hr{
+                height: 2px;
+                background-color: lightseagreen;
+                border: none;
+                border-radius: 3px;
+            }
+            #error-container hr{
+                background: lightcoral;
+            }
+            #login-form .input-field input{
+                width: 90%;
+            }
+            #login-form .input-field label{
+                left: 8%;
+            }
+            #login-form .title-col{
+                color: gray;
+            }
+            #error-container .title-col{
+                color: lightcoral;
+            }
+            #login-form .title-col h4,#error-container .title-col h4{
+                margin-top: 0px;
+                font-size: 2rem;
+            }
+            #login-form .title-col img,#error-container .title-col img{
+                height: 50px;
+                opacity: 0.4;
+                margin-top: 10px;
+            }
+            #error-container .title-col img{
+                height: 60px;
+                opacity: 0.6;
+            }
+            /*--------LOGIN----------*/
+        </style>
+    </head>
+    <body>
+
+    <nav th:fragment="nav" id="page-header">
+        <div class="nav-wrapper">
+            <div id="banner">
+                <a href="#" data-activates="side-nav-bar" class="button-collapse">
+                    <i class="material-icons">menu</i>
+                </a>
+                <div class="brand-logo left hide-on-small-only">
+                    <img src="/images/ehealth-logo.png">
+                </div>
+                <h5 class="brand-logo center" id="page-title">
+                    EMC
+                </h5>
+            </div>
+        </div>
+    </nav>
+
+        </nav>
+        <div class="container valign-wrapper screen-height" id="login-container">
+            <form id="login-form" method="POST" action="/login">
+                <div class="row center white z-depth-1">
+                    <div class="col s12 title-col">
+                        <img src="/images/user.png">
+                        <h4>LOGIN</h4>
+                        <hr>
+                    </div>
+                    <div class="col s12 center err-msg">
+                        <span class="err-text"></span>
+                    </div>
+                    <div class="col s12 input-field">
+                        <input type="text" name="username" required>
+                        <label>Username</label>
+                    </div>
+                    <div class="col s12 input-field">
+                        <input type="password" name="password" required>
+                        <label>Password</label>
+                    </div>
+                    <div class="col s12 input-field">
+                        <button class="btn waves-effect waves-light" type="submit">SIGN IN</button>
+                        <br><br>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <script>
+            var url;
+            $(".screen-height").height(window.innerHeight);
+            $(document).ready(function () {
+                 url = new URL(window.location.href);
+                 if(url.search.indexOf("error")>=0){
+                     $(".err-text").text('Invalid username or password');
+                     $(".err-msg").addClass('input-field');
+                 }
+            });
+        </script>
+    </body>
+</html>

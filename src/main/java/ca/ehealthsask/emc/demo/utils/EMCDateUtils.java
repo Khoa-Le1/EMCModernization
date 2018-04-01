@@ -9,6 +9,9 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Used for parsing and formatting dates and times used in EMC proof of concept
+ */
 @Slf4j
 public class EMCDateUtils {
     public static String DATEPICKER_FORMAT = "d MMMM, yyyy";

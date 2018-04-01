@@ -10,17 +10,12 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface AuditLogRepository extends CrudRepository<AuditLog, Long>{
-
-//    List<MessageWorkflow> findWorkflowsByMessageUuid(String messageCorrelationUuid);
-
-//    @Query("select " +
-//            "    al.eventTs as eventTs," +// as eventTs,
-//            "    al.eventMajorCde as eventMajorCde, " +// as eventMajorCde, " +
-//            "    al.eventMinorCde as eventMinorCd " +//as eventMinorCde " +
-//            "from AuditLog al, EventMinorCode emc " +
-//            "where al.eventMinorCde = emc.eventMinorCodePK.eventMinorCde " +
-//            "    and al.eventMajorCde = emc.eventMinorCodePK.eventMajorCde " +
-//            "    and al.messageCorrelationUUID = ?1")
+    /**
+     * Queries audit log, hial message, and event minor code tables for valuse found in message workflow projection for
+     * Message Inquiry searching
+     * @param messageCorrelationUuid uuid used to perform the search
+     * @return a list of MessageWorkflow objects
+     */
     @Query("select " +
             "    al.eventTs as eventTs, " +
             "    emc.businessName as businessName, " +
@@ -30,7 +25,11 @@ public interface AuditLogRepository extends CrudRepository<AuditLog, Long>{
             "    end as errorDescription, " +
             "    al.eventMajorCde as eventMajorCde, " +
             "    al.eventMinorCde as eventMinorCde " +
-            "from AuditLog al, EventMinorCode emc, HialMessage hm, RemediationMessage rm, RemediationError re " +
+            "from AuditLog al, " +
+            "EventMinorCode emc, " +
+            "HialMessage hm, " +
+            "RemediationMessage rm, " +
+            "RemediationError re " +
             "where hm.messageCorrelationUuid = al.messageCorrelationUUID " +
             "    and al.eventMinorCde = emc.eventMinorCodePK.eventMinorCde " +
             "    and al.eventMajorCde = emc.eventMinorCodePK.eventMajorCde " +

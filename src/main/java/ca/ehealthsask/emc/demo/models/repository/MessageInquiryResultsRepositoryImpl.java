@@ -4,6 +4,8 @@ import ca.ehealthsask.emc.demo.models.entity.MessageInquiryResults;
 import ca.ehealthsask.emc.demo.models.model.MessageInquiryParameters;
 import ca.ehealthsask.emc.demo.services.NativeQueryBuilder;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
@@ -12,17 +14,24 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
 
-@Data
 @Repository
+@Slf4j
 public class MessageInquiryResultsRepositoryImpl implements MessageInquiryResultsRepository {
 
     @PersistenceContext
     private EntityManager entityManager;
 
-    //still todo
+    @Autowired
+    private DomainMessageTypeXrefRepository domainMessageTypeXrefRepository;
+
+    //still todo: implement searching by domain via param's domain field
     @Override
     public List<MessageInquiryResults> getByParameters(MessageInquiryParameters params, Pageable pageable){
-        Query q = NativeQueryBuilder.buildMessageInquiryQuery(entityManager, params, pageable);
+        //created because @Autowire doesn't work in NativeQueryBuilder
+        List<String> messageInteractionTypes = domainMessageTypeXrefRepository.findMessageInteractionTypesByReferenceCode(params.getDomain());
+        log.info("Interaction types: " + messageInteractionTypes);
+        NativeQueryBuilder qb = new NativeQueryBuilder();
+        Query q = qb.buildMessageInquiryQuery(entityManager, params, domainMessageTypeXrefRepository, pageable);
         return q.getResultList();
     }
 

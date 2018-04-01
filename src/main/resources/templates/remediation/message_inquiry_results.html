@@ -1,9 +1,10 @@
 <table xmlns:th="http://www.thymeleaf.org"
                class="mdl-data-table mdl-js-data-table mdl-data-table--selectable"
                id="result-table">
-    <thead>
-    <tr>
-        <th>Order Number</th>
+    <thead >
+    <tr >
+        <th th:text="${indexFieldName}">Order Number</th>
+        <!--<th>Order Number</th>-->
         <th>Message Type</th>
         <th>Source</th>
         <th data-id-field="true" class="mdl-data-table__cell--non-numeric">Message Control ID</th>
@@ -14,16 +15,16 @@
     </thead>
     <tbody>
     <!--<th:block >-->
-    <tr th:each="row : ${messageInquiryResults}">
-        <td th:text="${row.getIndexValue()}"></td>
-        <td th:text="${row.getMessageType()}"></td>
-        <td th:text="${row.getSenderOid()}"></td>
-        <td class="mdl-data-table__cell--non-numeric"
-            th:text="${row.getMessageControlId()}" th:attr="message-correlation-uuid=${row.getMessageCorrelationUUID()}"></td>
-        <td th:text="${#temporals.format(row.getInitialEventTs(), 'dd-MMM-yyyy hh:mm:ssa')}"></td>
-        <td th:text="${#temporals.format(row.getLatestEventTs(), 'dd-MMM-yyyy hh:mm:ssa')}"></td>
-        <td th:text="${row.getDescription()}"></td>
-    </tr>
+        <tr th:each="row : ${messageInquiryResults}">
+            <td th:text="${row.getIndexValue()}"></td>
+            <td th:text="${row.getMessageType()}"></td>
+            <td th:text="${row.getSenderOid()}"></td>
+            <td class="mdl-data-table__cell--non-numeric"
+                th:text="${row.getMessageControlId()}" th:attr="message-correlation-uuid=${row.getMessageCorrelationUUID()}"></td>
+            <td th:text="${#temporals.format(row.getInitialEventTs(), 'dd-MMM-yyyy hh:mm:ssa')}"></td>
+            <td th:text="${#temporals.format(row.getLatestEventTs(), 'dd-MMM-yyyy hh:mm:ssa')}"></td>
+            <td th:text="${row.getDescription()}"></td>
+        </tr>
     <!--</th:block>-->
     </tbody>
 </table>

@@ -23,20 +23,20 @@ public class HomeController {
 
         model.addAttribute("name", appName);
         model.addAttribute("title", appName);
-        return "index";
+        return "home";
     }
 
 
 
-    @GetMapping("/remediation/messageInquiry")
-    public String remediationQueue(Model model,
-                       @RequestParam(value = "name", required = false,
-                               defaultValue = "Guest") String name) {
-
-        model.addAttribute("name", name);
-        model.addAttribute("title", appName);
-        return "remediation/message_inquiry";
-    }
+//    @GetMapping("/remediation/messageInquiry")
+//    public String remediationQueue(Model model,
+//                       @RequestParam(value = "name", required = false,
+//                               defaultValue = "Guest") String name) {
+//
+//        model.addAttribute("name", name);
+//        model.addAttribute("title", appName);
+//        return "remediation/message_inquiry";
+//    }
 
     /**Testing
      *

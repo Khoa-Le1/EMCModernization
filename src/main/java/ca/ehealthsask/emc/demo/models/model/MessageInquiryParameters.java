@@ -16,6 +16,7 @@ import java.util.List;
 @Builder
 public class MessageInquiryParameters {
 
+    private String domain;
     private String messageControlId;
     private String orderId;
     private LocalDateTime fromDate;

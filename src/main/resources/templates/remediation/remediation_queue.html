@@ -14,10 +14,8 @@
 
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head >
-    <title>Layout Title will be replaced by Page Title!</title>
-    <title><!--layout:title-pattern="$CONTENT_TITLE"-->Layout Title will be replaced by Page Title!</title>
-    <object th:include="/common/head :: head" th:remove="tag"></object>
+<head th:include="/common/head :: head">
+    <title>[Sample] EMC Data Remediation</title>
 </head>
 <body>
 <!--LOADING SCREEN-->
@@ -44,7 +42,7 @@
 </div>
 
 <!--NAVBAR-->
-<nav id="page-header">
+<nav th:replace="/common/navbar :: nav" id="page-header">
     <div class="nav-wrapper">
         <a href="#" data-activates="side-nav-bar" class="button-collapse">
             <i class="material-icons">menu</i>
@@ -67,7 +65,7 @@
 </nav>
 
 <!--USER ACTIONS DROPDOWN-->
-<ul id='user-actions' class='dropdown-content'>
+<ul th:replace="/common/user_actions :: user-actions" id='user-actions' class='dropdown-content'>
     <li class="center user-info">
         <i class="material-icons">account_circle</i>
         <br>
